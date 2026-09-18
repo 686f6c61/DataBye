@@ -1,0 +1,36 @@
+Asunto: Ejercicio de derechos RGPD y art. 20 LOPDGDD (consulta / rectificación / exclusión) - {full_name}
+
+{broker_name}
+Delegado de Protección de Datos / Canal de ejercicio de derechos
+
+{location}, {date}
+
+Estimados señores:
+
+Me dirijo a ustedes como interesado/a, al amparo del Reglamento (UE) 2016/679 (RGPD) y de la Ley Orgánica 3/2018 (LOPDGDD), en particular su artículo 20 relativo a sistemas de información crediticia, para ejercer los derechos que se indican.
+
+Datos de contacto a efectos de respuesta:
+- Nombre y apellidos: {full_name}
+- Correo electrónico: {email}
+
+1. Derecho de acceso (artículo 15 RGPD), con la información del artículo 12 RGPD
+Les ruego confirmen si constan datos que me conciernen en su fichero o sistema de solvencia patrimonial y crédito, y faciliten:
+- Las finalidades del tratamiento;
+- El origen de los datos y la identidad del acreedor informante;
+- Importes, conceptos y fechas relevantes;
+- Los destinatarios o categorías de destinatarios;
+- Los plazos de conservación previstos.
+
+2. Rectificación y/o supresión (artículos 16 y 17 RGPD; artículo 20 LOPDGDD)
+Si la deuda es inexacta, inexistente, ya pagada o anulada, o si no se cumplen los requisitos de inclusión en un sistema de información crediticia (deuda cierta, vencida y exigible; información previa al interesado; requerimiento de pago previo; cuantía aplicable; y plazo máximo de cinco años desde el vencimiento de la obligación), solicito la rectificación o la exclusión inmediata que proceda.
+
+En particular, si la deuda ha sido satisfecha, les ruego la exclusión inmediata del fichero, conforme a la doctrina y práctica aplicables en materia de sistemas de solvencia patrimonial.
+
+3. Plazo de respuesta
+Conforme al artículo 12.3 RGPD, ruego respuesta sin dilación indebida y, a más tardar, en el plazo de un mes desde la recepción de esta solicitud. Prefiero canal electrónico.
+
+Esta comunicación se formula sin perjuicio de las controversias civiles sobre la existencia, cuantía o exigibilidad de cualquier deuda. Su objeto es exclusivamente el ejercicio de derechos de protección de datos.
+
+Atentamente,
+{full_name}
+{email}

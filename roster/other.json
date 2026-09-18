@@ -1,0 +1,18 @@
+[
+  {
+    "id": "konecta",
+    "name": "Konecta (Grupo Konectanet)",
+    "category": "other",
+    "emails": [
+      "dpd@konecta.com"
+    ],
+    "alt_emails": [],
+    "url": "https://www.konecta.com/",
+    "notes": "DPD documentado. BPO/contact center; puede intervenir en cobros para terceros, pero la política publicada es principalmente de web/marketing. Incluir solo si el usuario identifica a Konecta en comunicaciones de deuda. No es gestora de cartera típica.",
+    "confidence": "likely",
+    "source_urls": [
+      "https://www.konecta.com/es/politica-de-privacidad"
+    ],
+    "user_triggered_only": true
+  }
+]

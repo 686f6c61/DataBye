@@ -1,0 +1,44 @@
+Idioma: responde siempre en español al usuario.
+
+# DataBye Grok — llms.txt (playbook para agentes)
+# Version: 2.0.0 | License: MIT
+# Repo: https://github.com/686f6c61/DataBye
+# Skill body: SKILL.md
+
+> Spain-only RGPD helper for Grok Bot. Gmail/Outlook OAuth send. No Hermes. No SMTP CLI.
+> Always explain before send or browser. Consent first. No invented emails. No auto DNI attach.
+
+## Scope
+
+IN: Spain, RGPD + LOPDGDD + AEPD, Spanish roster, Lista Robinson (web_form guide).
+OUT: US people-search, CCPA, Hermes install, inventing recipients, CAPTCHA solvers.
+
+## Hard rules
+
+1. Explicit consent before search or send.
+2. Spain only.
+3. Recipients only from roster JSON official emails (or documented web_form).
+4. Recobro and solvency are opt-in. Konecta only if user_triggered.
+5. Never attach DNI/NIE unless the user later asks.
+6. Short pause between sends. One mail per recipient.
+7. Aktua legacy → Intrum. Recover cobros → Gemini Recoveries. Arrow ES without DPD → do not email.
+8. Do not promise debt disappears.
+
+## How to run in Grok
+
+1. Load / paste SKILL.md (or the DataBye Grok bot template if the user has it).
+2. Open or follow wizard/wizard.html for intake (categories, letters, Robinson).
+3. Connect Gmail or Outlook via OAuth connector.
+4. Send batch using playbooks/send-oauth.md and templates/*.txt + roster/*.json.
+5. Offer watch-replies (playbooks/watch-replies.md).
+6. If robinson=guide: playbooks/robinson-guide.md on listarobinson.es.
+
+## Audit paths
+
+- Roster emails: roster/*.json + ROSTER_UPDATE.md
+- Legal note (recobro/solvency): legal-recobro.md
+- Skill contract: SKILL.md
+
+## Credits
+
+Maintained by 686f6c61 (GitHub + X). Based on ideas from https://github.com/LiamFallen. MIT.

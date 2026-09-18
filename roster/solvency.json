@@ -1,0 +1,71 @@
+[
+  {
+    "id": "experian_badexcug",
+    "name": "Experian Bureau de Crédito (BADEXCUG)",
+    "category": "solvency",
+    "emails": [],
+    "alt_emails": [
+      "badexcug@experian.com"
+    ],
+    "url": "https://portaldelconsumidor.experian.es/",
+    "notes": "method: web_form preferente (Portal del Consumidor). Email badexcug@experian.com citado por terceros (p. ej. Gescobro) y en guías; verificar en página Experian (a menudo detrás de bot-wall). No usar dpospain@experian.com para derechos según doctrina secundaria. Categoría solvency, no recobro.",
+    "confidence": "likely",
+    "source_urls": [
+      "https://portaldelconsumidor.experian.es/",
+      "https://www.experian.es/legal/salir-fichero/tratamiento-datos.",
+      "https://www.aepd.es/preguntas-frecuentes/7-solvencia-patrimonial/FAQ-0702-he-sido-incluido-en-un-tratamiento-de-solvencia-patrimonial-y-credito-pero-desconozco-cual",
+      "https://gcbe.es/politica-de-privacidad/"
+    ]
+  },
+  {
+    "id": "equifax_asnef",
+    "name": "ASNEF-Equifax (solvencia)",
+    "category": "solvency",
+    "emails": [
+      "sac@equifax.es"
+    ],
+    "alt_emails": [],
+    "url": "https://soluciones.equifax.es/consumidores/",
+    "notes": "UPDATE de equifax_es existente: marcar categoría solvency. Canal documentado sac@equifax.es (formulario Consulta Ágil PDF) y portal eDerechos. Ya en /workspace/DataBye/references/brokers/equifax_es.json.",
+    "confidence": "documented",
+    "source_urls": [
+      "https://assets.equifax.com/assets/spain/consulta_agil_ficheros.pdf",
+      "https://soluciones.equifax.es/consumidores/",
+      "https://www.aepd.es/preguntas-frecuentes/7-solvencia-patrimonial/FAQ-0702-he-sido-incluido-en-un-tratamiento-de-solvencia-patrimonial-y-credito-pero-desconozco-cual"
+    ]
+  },
+  {
+    "id": "rai_cci",
+    "name": "RAI (Registro de Aceptaciones Impagadas)",
+    "category": "solvency",
+    "emails": [
+      "helpdesk@ficherorai.com"
+    ],
+    "alt_emails": [],
+    "url": "https://www.ficherorai.com/",
+    "notes": "Fichero de solvencia orientado sobre todo a personas jurídicas / efectos mercantiles. Poco útil para particular consumidor; incluir solo si el wizard solvency lo explica. helpdesk en web oficial.",
+    "confidence": "documented",
+    "source_urls": [
+      "https://www.ficherorai.com/RaiWeb/Informacion"
+    ]
+  },
+  {
+    "id": "confirma_sistemas",
+    "name": "Confirma Sistemas (Fichero Confirma / TransUnion)",
+    "category": "solvency",
+    "emails": [
+      "dpo@confirmasistemas.es"
+    ],
+    "alt_emails": [
+      "esdpo@transunion.com"
+    ],
+    "url": "https://www.confirmasistemas.es/",
+    "notes": "Fichero de prevención del fraude en contratación (no es ASNEF/BADEXCUG). Política de privacidad documenta DPO dpo@confirmasistemas.es y Esdpo@transunion.com (TransUnion). Opcional en wizard solvency.",
+    "confidence": "documented",
+    "source_urls": [
+      "https://confirmasistemas.es/politica-de-privacidad/",
+      "https://www.cofidis.es/es/informacion-legal/proteccion-datos.html"
+    ],
+    "optional": true
+  }
+]

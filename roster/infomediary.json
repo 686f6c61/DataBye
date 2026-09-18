@@ -1,0 +1,219 @@
+[
+  {
+    "id": "axesor",
+    "name": "Axesor",
+    "category": "infomediary",
+    "emails": [
+      "dpd@axesor.es"
+    ],
+    "alt_emails": [],
+    "url": "https://www.axesor.es",
+    "confidence": "documented",
+    "method": "email",
+    "notes": "",
+    "source_urls": [],
+    "blurb_es": "Información mercantil y de empresas (bureau / scoring comercial)."
+  },
+  {
+    "id": "informa",
+    "name": "Informa",
+    "category": "infomediary",
+    "emails": [
+      "dpo@informa.es"
+    ],
+    "alt_emails": [
+      "protecciondedatos@informa.es"
+    ],
+    "url": "https://www.informa.es",
+    "confidence": "documented",
+    "method": "email",
+    "notes": "",
+    "source_urls": [],
+    "blurb_es": "Gran infomediario de datos empresariales (Informa D&B)."
+  },
+  {
+    "id": "einforma",
+    "name": "eInforma",
+    "category": "infomediary",
+    "emails": [
+      "clientes@einforma.com"
+    ],
+    "alt_emails": [],
+    "url": "https://www.einforma.com",
+    "confidence": "documented",
+    "method": "email",
+    "notes": "",
+    "source_urls": [],
+    "blurb_es": "Portal de informes de empresas ligado a Informa."
+  },
+  {
+    "id": "accumin",
+    "name": "Accumin (Datacentric)",
+    "category": "infomediary",
+    "emails": [
+      "dpd.datacentric@accumin.com"
+    ],
+    "alt_emails": [
+      "privacidad.datacentric@accumin.com"
+    ],
+    "url": "https://www.accumin.com/es/intelligence",
+    "confidence": "documented",
+    "method": "email",
+    "notes": "",
+    "source_urls": [],
+    "blurb_es": "Datacentric / Accumin: enriquecimiento y bases de datos de marketing."
+  },
+  {
+    "id": "iberinform",
+    "name": "Iberinform",
+    "category": "infomediary",
+    "emails": [
+      "infoprotecciondatosiber@iberinform.es"
+    ],
+    "alt_emails": [],
+    "url": "https://www.iberinform.es",
+    "confidence": "documented",
+    "method": "email",
+    "notes": "",
+    "source_urls": [],
+    "blurb_es": "Informes comerciales y riesgo (grupo CESCE)."
+  },
+  {
+    "id": "camerdata",
+    "name": "Camerdata",
+    "category": "infomediary",
+    "emails": [
+      "informacion@camerdata.es"
+    ],
+    "alt_emails": [],
+    "url": "https://www.camerdata.es",
+    "confidence": "documented",
+    "method": "email",
+    "notes": "",
+    "source_urls": [],
+    "blurb_es": "Datos de cámaras de comercio / directorios empresariales."
+  },
+  {
+    "id": "netamo",
+    "name": "Netamo (Dato Capital)",
+    "category": "infomediary",
+    "emails": [
+      "privacy@netamo.com"
+    ],
+    "alt_emails": [],
+    "url": "https://www.netamo.com",
+    "confidence": "documented",
+    "method": "email",
+    "notes": "",
+    "source_urls": [],
+    "blurb_es": "Dato Capital / Netamo: datos societarios y cargos."
+  },
+  {
+    "id": "equifax_info",
+    "name": "Equifax España (infomediario / marketing)",
+    "category": "infomediary",
+    "emails": [
+      "sac@equifax.es"
+    ],
+    "alt_emails": [],
+    "url": "https://www.equifax.es",
+    "confidence": "documented",
+    "method": "email",
+    "notes": "Canal genérico Equifax; para fichero ASNEF use la categoría solvencia.",
+    "source_urls": [],
+    "blurb_es": "Equifax (canal marketing/infomediario; ASNEF va en solvencia)."
+  },
+  {
+    "id": "infoempresa",
+    "name": "Infoempresa",
+    "category": "infomediary",
+    "emails": [
+      "contacto@infoempresa.com"
+    ],
+    "alt_emails": [],
+    "url": "https://www.infoempresa.com/",
+    "confidence": "documented",
+    "method": "email",
+    "notes": "Asociado ASEDIE-style / infomediario de datos mercantiles. FAQ documenta contacto@infoempresa.com para modificar datos de cargos/personas físicas tras acreditar. No está en el núcleo actual DataBye brokers.",
+    "source_urls": [
+      "https://www.infoempresa.com/es-es/es/faqs",
+      "https://www.asedie.es/es/nuestros-asociados"
+    ],
+    "blurb_es": "Fichas mercantiles y cargos de personas en sociedades."
+  },
+  {
+    "id": "inatlas",
+    "name": "inAtlas (Intelligent Atlas)",
+    "category": "infomediary",
+    "emails": [
+      "info@inatlas.com"
+    ],
+    "alt_emails": [],
+    "url": "https://www.inatlas.com/",
+    "confidence": "documented",
+    "method": "email",
+    "notes": "Asociado ASEDIE (geomarketing/datos). Cláusula de privacidad en web indica ejercicio de derechos en info@inatlas.com. Canal genérico pero documentado para ARCO.",
+    "source_urls": [
+      "https://www.inatlas.com/es/empresa/",
+      "https://www.asedie.es/es/nuestros-asociados"
+    ],
+    "blurb_es": "Geomarketing y datos de localización / audiencia."
+  },
+  {
+    "id": "credito_y_caucion",
+    "name": "Crédito y Caución (Atradius)",
+    "category": "infomediary",
+    "emails": [
+      "dpo@atradius.com"
+    ],
+    "alt_emails": [],
+    "url": "https://www.creditoycaucion.es/",
+    "confidence": "documented",
+    "method": "email",
+    "notes": "Seguro de crédito + inteligencia/información empresarial B2B (grupo Atradius). Declaración de privacidad ES documenta DPO en dpo@atradius.com.",
+    "source_urls": [
+      "https://www.creditoycaucion.es/es/declaracion-de-privacidad"
+    ],
+    "blurb_es": "Crédito y Caución / Atradius: info empresarial y seguro de crédito."
+  },
+  {
+    "id": "economia3",
+    "name": "Economía 3 (ECO3 Multimedia)",
+    "category": "infomediary",
+    "emails": [
+      "lopd.empresas@economia3.com"
+    ],
+    "alt_emails": [
+      "administracion@economia3.info",
+      "marketing@economia3.info"
+    ],
+    "url": "https://economia3.com/",
+    "confidence": "documented",
+    "method": "email",
+    "notes": "Asociado ASEDIE. Política de privacidad documenta DPD lopd.empresas@economia3.com; derechos también a administracion@economia3.info. Perfil más media/datos editoriales que bureau mercantil clásico.",
+    "source_urls": [
+      "https://economia3.com/politica-de-privacidad/",
+      "https://www.asedie.es/es/nuestros-asociados"
+    ],
+    "blurb_es": "Medio y datos editoriales / empresariales (ASEDIE)."
+  },
+  {
+    "id": "coregistros",
+    "name": "CoRegistros",
+    "category": "infomediary",
+    "emails": [
+      "dpo@coregistros.com"
+    ],
+    "alt_emails": [
+      "info@coregistros.com"
+    ],
+    "url": "https://www.coregistros.com/",
+    "confidence": "documented",
+    "method": "email",
+    "notes": "Broker/enriquecimiento leads B2C y B2B (España, sede Barcelona). Política de privacidad documenta DPO dpo@coregistros.com para ejercicio de derechos RGPD.",
+    "source_urls": [
+      "https://www.coregistros.com/fr/politique-de-confidentialite/"
+    ],
+    "blurb_es": "Enriquecimiento y leads B2B/B2C."
+  }
+]

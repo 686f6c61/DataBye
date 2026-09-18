@@ -1,0 +1,40 @@
+Asunto: Ejercicio de derechos RGPD/LOPDGDD (acceso / oposición / supresión) - {full_name}
+
+{broker_name}
+Delegado de Protección de Datos / Canal de ejercicio de derechos
+
+{location}, {date}
+
+Estimados señores:
+
+Me dirijo a ustedes como interesado/a, al amparo del Reglamento (UE) 2016/679 (RGPD) y de la Ley Orgánica 3/2018, de Protección de Datos Personales y garantía de los derechos digitales (LOPDGDD), para ejercer los derechos que se indican a continuación.
+
+Datos de contacto a efectos de respuesta:
+- Nombre y apellidos: {full_name}
+- Correo electrónico: {email}
+
+1. Derecho de acceso (artículo 15 RGPD), con la información del artículo 12 RGPD
+Les ruego confirmen si tratan datos personales que me conciernen y, en caso afirmativo, faciliten de forma clara y completa:
+- Las finalidades del tratamiento;
+- La base jurídica;
+- Las categorías de datos;
+- El origen o las fuentes de los datos;
+- Los destinatarios o categorías de destinatarios;
+- Los plazos de conservación previstos o los criterios para determinarlos.
+
+2. Derecho de oposición a la mercadotecnia directa (artículo 21.2 RGPD)
+Me opongo al tratamiento de mis datos personales para mercadotecnia directa, incluida la elaboración de perfiles en la medida en que esté relacionada con dicha mercadotecnia, así como a cualquier cesión o reutilización comercial incompatible con esta oposición.
+
+3. Derecho de oposición por interés legítimo (artículo 21.1 RGPD)
+Cuando el tratamiento se base en el artículo 6.1.f RGPD, me opongo a dicho tratamiento en lo que no resulte estrictamente necesario y, en particular, a la reutilización comercial, el enriquecimiento de bases de datos y la cesión de mis datos con fines de información comercial o marketing.
+
+4. Derecho de supresión (artículo 17 RGPD)
+Solicito la supresión de mis datos personales cuando ya no sean necesarios para las finalidades que justificaron su recogida, cuando el tratamiento sea ilícito o cuando proceda tras una oposición estimada, sin perjuicio de las excepciones legalmente previstas.
+
+En consecuencia, les requiero que cesen la reutilización comercial, el enriquecimiento y cualquier tratamiento de mis datos con fines de marketing o información comercial que no cuente con base jurídica válida tras esta oposición.
+
+Les recuerdo el plazo de respuesta del artículo 12.3 RGPD (un mes desde la recepción de esta solicitud). Prefiero canal electrónico.
+
+Atentamente,
+{full_name}
+{email}

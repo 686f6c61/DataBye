@@ -1,0 +1,48 @@
+Asunto: Ejercicio de derechos RGPD (acceso / oposición / supresión) - {full_name}
+
+{broker_name}
+Delegado de Protección de Datos / Canal de ejercicio de derechos
+
+{location}, {date}
+
+Estimados señores:
+
+Me dirijo a ustedes en calidad de interesado/a, al amparo del Reglamento (UE) 2016/679 (RGPD) y de la Ley Orgánica 3/2018 (LOPDGDD), para ejercer de forma clara y pacífica los derechos que se indican a continuación.
+
+Datos de contacto a efectos de respuesta:
+- Nombre y apellidos: {full_name}
+- Correo electrónico: {email}
+
+1. Derecho de acceso (artículo 15 RGPD), con la información del artículo 12 RGPD
+Les ruego confirmen si tratan datos personales que me conciernen y, en caso afirmativo, faciliten:
+- Las finalidades del tratamiento y la base jurídica (artículo 6 RGPD);
+- Las categorías de datos;
+- El origen de los datos;
+- Los destinatarios o categorías de destinatarios (incluida, en su caso, la identidad del acreedor o cesionario del crédito por cuya cuenta actúan, o de quien les haya encargado la gestión);
+- Los plazos de conservación previstos;
+- Si actúan como responsables o como encargados del tratamiento (artículo 28 RGPD) y, de ser encargados, los datos del responsable.
+
+2. Derecho de oposición (artículo 21 RGPD)
+Me opongo al tratamiento de mis datos personales basado en el interés legítimo cuando no resulte estrictamente necesario para la gestión legítima del cobro de una deuda cierta, vencida y exigible que me afecte, y en particular a cualquier uso para mercadotecnia, cesión comercial de datos o contactos desproporcionados ajenos a esa finalidad.
+
+3. Derecho de supresión (artículo 17 RGPD)
+Solicito la supresión de mis datos personales cuando ya no sean necesarios para las finalidades que justificaron su recogida, cuando el tratamiento sea ilícito, o cuando proceda tras una oposición estimada, todo ello sin perjuicio de las excepciones del artículo 17.3 RGPD (por ejemplo, obligación legal o ejercicio o defensa de reclamaciones).
+
+Si mantienen un tratamiento necesario para reclamar una deuda o para cumplir una obligación legal, les ruego:
+- Lo indiquen de forma concreta;
+- Limiten los datos al mínimo imprescindible (principio de minimización, artículo 5 RGPD);
+- Cesen cualquier finalidad incompatible;
+- Me informen del plazo de conservación y del bloqueo aplicable.
+
+4. Exactitud
+Si los datos o la deuda asociada son inexactos, inexistentes o ya han sido satisfechos o anulados, solicito la rectificación oportuna y el cese de requerimientos indebidos.
+
+Les recuerdo que deben responder sin dilación indebida y, a más tardar, en el plazo de un mes desde la recepción de esta solicitud, conforme al artículo 12.3 RGPD.
+
+Esta comunicación no implica reconocimiento de deuda alguna. Su objeto es exclusivamente el ejercicio de derechos de protección de datos.
+
+Quedo a la espera de su respuesta en la dirección de correo indicada. No es necesario que exijan más datos de los razonables para verificar mi identidad; prefiero canal electrónico.
+
+Atentamente,
+{full_name}
+{email}

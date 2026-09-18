@@ -1,0 +1,21 @@
+DataBye — Grok Bot España
+=========================
+
+Skill / bot: DataBye Grok ("bye to data")
+Version: 2.0.0
+Jurisdiction: Spain only (RGPD / LOPDGDD / AEPD)
+
+Maintained by 686f6c61
+- GitHub: https://github.com/686f6c61
+- X: https://x.com/686f6c61
+
+Based on ideas from LiamFallen:
+https://github.com/LiamFallen
+
+This repository is the auditable package (roster, templates, playbooks,
+wizard, skill). Runtime is Grok Bot with Gmail/Outlook OAuth connectors.
+
+Lista Robinson (https://www.listarobinson.es/) is guided advertising
+exclusion (web_form), not an email-deletion channel.
+
+MIT License — see LICENSE.

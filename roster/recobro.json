@@ -1,0 +1,291 @@
+[
+  {
+    "id": "intrum_es",
+    "name": "Intrum Servicing Spain",
+    "category": "recobro",
+    "emails": [
+      "dpo.es@intrum.com"
+    ],
+    "alt_emails": [
+      "info.spain@intrum.com"
+    ],
+    "url": "https://www.intrum.es/",
+    "notes": "DPO documentado en política de privacidad ES. Lindorff España pasó a Intrum. También formulario de derechos en web. No duplicar como Lowell ES.",
+    "confidence": "documented",
+    "source_urls": [
+      "https://www.intrum.es/particulares/sobre-intrum/privacidad/politica-de-privacidad/",
+      "https://www.intrum.es/particulares/sobre-intrum/privacidad/derechos-de-los-sujetos-de-datos/"
+    ]
+  },
+  {
+    "id": "eos_spain",
+    "name": "EOS Spain",
+    "category": "recobro",
+    "emails": [
+      "dpo@eos-spain.es"
+    ],
+    "alt_emails": [
+      "protecciondatos@eos-spain.es"
+    ],
+    "url": "https://es.eos-solutions.com/",
+    "notes": "DPO y canal protecciondatos documentados en Aviso de Privacidad. Grupo EOS (no confundir con eosiberica.es de Córdoba).",
+    "confidence": "documented",
+    "source_urls": [
+      "https://es.eos-solutions.com/privacy-notice/",
+      "https://es.eos-solutions.com/personal-data-processing0/"
+    ]
+  },
+  {
+    "id": "axactor_es",
+    "name": "Axactor España",
+    "category": "recobro",
+    "emails": [
+      "derechosarco@axactor.com"
+    ],
+    "alt_emails": [],
+    "url": "https://www.axactor.com/es/",
+    "notes": "Canal derechos ARCO / DPD documentado en política de privacidad (derechosarco@axactor.com). Compra/servicing de deuda.",
+    "confidence": "documented",
+    "source_urls": [
+      "https://www.axactor.com/es/politica-de-privacidad"
+    ]
+  },
+  {
+    "id": "cabot_es",
+    "name": "Cabot Financial Spain",
+    "category": "recobro",
+    "emails": [
+      "proteccion.datos@cabotfinancial.es"
+    ],
+    "alt_emails": [],
+    "url": "https://cabotfinancial.es/",
+    "notes": "Email de ejercicio de derechos y DPD documentado en política de privacidad.",
+    "confidence": "documented",
+    "source_urls": [
+      "https://cabotfinancial.es/politica-de-privacidad/"
+    ]
+  },
+  {
+    "id": "kruk_es",
+    "name": "KRUK España",
+    "category": "recobro",
+    "emails": [
+      "info@es.kruk.eu"
+    ],
+    "alt_emails": [
+      "dpo@es.kruk.eu"
+    ],
+    "url": "https://es.kruk.eu/",
+    "notes": "Ejercicio de derechos: info@es.kruk.eu (página deudores). DPO: dpo@es.kruk.eu. Suele actuar como encargada de InvestCapital u otros acreedores. ANGECO.",
+    "confidence": "documented",
+    "source_urls": [
+      "https://es.kruk.eu/me-estan-reclamando-una-deuda/",
+      "https://es.kruk.eu/politica-de-privacidad/"
+    ]
+  },
+  {
+    "id": "gescobro",
+    "name": "Gescobro Collection Services",
+    "category": "recobro",
+    "emails": [
+      "dpo@gescobro.com"
+    ],
+    "alt_emails": [
+      "compliance@gescobro.com"
+    ],
+    "url": "https://www.gescobro.com/",
+    "notes": "DPO y compliance documentados. Servicing y compra de carteras. Web también en gcbe.es. Cita ASNEF/BADEXCUG en su política.",
+    "confidence": "documented",
+    "source_urls": [
+      "https://gcbe.es/politica-de-privacidad/"
+    ]
+  },
+  {
+    "id": "isgf",
+    "name": "ISGF Informes Comerciales",
+    "category": "recobro",
+    "emails": [
+      "proteccion.datos@isgf.es"
+    ],
+    "alt_emails": [
+      "info@isgf.es",
+      "n.datos@isgf.es"
+    ],
+    "url": "https://www.isgf.es/",
+    "notes": "Gestora de cobros; proteccion.datos@isgf.es aparece en política/Derechos ARCO. Aparece en resoluciones AEPD como gestora.",
+    "confidence": "documented",
+    "source_urls": [
+      "https://www.isgf.es/PoliticaPrivacidad",
+      "https://isgf.es/DerechosARCO/DerechosArco"
+    ]
+  },
+  {
+    "id": "hoist_spain",
+    "name": "Hoist Finance Spain",
+    "category": "recobro",
+    "emails": [
+      "protecciondatos@hoistfinance.com"
+    ],
+    "alt_emails": [
+      "clientes@hoistfinance.com",
+      "dpo@hoistfinance.com"
+    ],
+    "url": "https://www.hoistfinance.es/",
+    "notes": "Compradora de créditos. Política ES: protecciondatos@hoistfinance.com (DPD Spain/grupo local). dpo@hoistfinance.com es DPO de grupo (sede Suecia).",
+    "confidence": "documented",
+    "source_urls": [
+      "https://www.hoistfinance.es/conoce-hoist/politica-de-privacidad/",
+      "https://www.hoistfinance.com/about-us/privacy/"
+    ]
+  },
+  {
+    "id": "b2_impact_es",
+    "name": "B2 Impact España (antes Verifica)",
+    "category": "recobro",
+    "emails": [
+      "dpo.es@b2-impact.com"
+    ],
+    "alt_emails": [
+      "contacto.es@b2-impact.com",
+      "info.legal.es@b2-impact.com"
+    ],
+    "url": "https://www.b2-impact.es/",
+    "notes": "Filial española de B2 Impact ASA (compra/servicing de deuda). Política de privacidad ES documenta dpo.es@b2-impact.com para derechos RGPD, con sección específica de deudores. No confundir con Zolva/Multigestión (operación Iberia vendida a Cerberus).",
+    "confidence": "documented",
+    "source_urls": [
+      "https://www.b2-impact.es/politica-privacidad/",
+      "https://www.b2-impact.es/contacto/"
+    ]
+  },
+  {
+    "id": "gemini_recoveries",
+    "name": "Gemini Recoveries & Collections",
+    "category": "recobro",
+    "emails": [
+      "dpd@geminicollections.com"
+    ],
+    "alt_emails": [
+      "info@geminicollections.com"
+    ],
+    "url": "https://www.geminicollections.com/",
+    "notes": "Gestora de cobros (ciclo completo del crédito). Política de privacidad documenta DPD en dpd@geminicollections.com; derechos también vía info@geminicollections.com. Sede Madrid.",
+    "confidence": "documented",
+    "source_urls": [
+      "https://www.geminicollections.com/en/privacy/",
+      "https://www.geminicollections.com/aviso-legal/"
+    ]
+  },
+  {
+    "id": "anticipa",
+    "name": "Anticipa Real Estate",
+    "category": "recobro",
+    "emails": [
+      "DPD@anticipa.com"
+    ],
+    "alt_emails": [
+      "lopd@anticipa.com"
+    ],
+    "url": "https://anticipa.com/",
+    "notes": "Servicer inmobiliario / deuda colateralizada (carteras NPL/REO). Canal DPD citado en páginas oficiales Anticipa: DPD@anticipa.com; lopd@anticipa.com aparece como canal LOPD/derechos.",
+    "confidence": "documented",
+    "source_urls": [
+      "https://anticipa.com/politica-de-proteccion-de-datos",
+      "https://anticipa.com/en/data-protection-policy",
+      "https://anticipa.com/en/internal-information-channel"
+    ]
+  },
+  {
+    "id": "servihabitat",
+    "name": "Servihabitat Servicios Inmobiliarios",
+    "category": "recobro",
+    "emails": [
+      "protecciondatos@servihabitat.com"
+    ],
+    "alt_emails": [
+      "cumplimientonormativo@servihabitat.com"
+    ],
+    "url": "https://www.servihabitat.com/",
+    "notes": "Servicer inmobiliario. Condiciones legales CRM/inversión documentan protecciondatos@servihabitat.com para ejercicio de derechos y cumplimientonormativo@servihabitat.com para DPO.",
+    "confidence": "documented",
+    "source_urls": [
+      "https://www.servihabitat.com/es/condiciones-legales-crm",
+      "https://www.servihabitat.com/es/condiciones-legales-inversioninmobiliaria"
+    ]
+  },
+  {
+    "id": "cofidis_es",
+    "name": "Cofidis S.A. Sucursal en España",
+    "category": "recobro",
+    "emails": [
+      "protecciondatos@cofidis.es"
+    ],
+    "alt_emails": [
+      "dpocofidis@cofidis.es"
+    ],
+    "url": "https://www.cofidis.es/",
+    "notes": "Entidad de crédito al consumo; trata cobros/impagos y comunica a ASNEF/BADEXCUG. Política oficial: protecciondatos@cofidis.es para derechos; DPO dpocofidis@cofidis.es. Acreedor-collections: incluir cuando el usuario identifica a Cofidis.",
+    "confidence": "documented",
+    "source_urls": [
+      "https://www.cofidis.es/es/informacion-legal/proteccion-datos.html",
+      "https://retail.cofidis.es/es/informacion-legal/proteccion-datos.html"
+    ]
+  },
+  {
+    "id": "zolva_es",
+    "name": "Zolva Platform (ex Multigestión Iberia)",
+    "category": "recobro",
+    "emails": [
+      "cumplimiento@zolva.es"
+    ],
+    "alt_emails": [
+      "cumplimiento@multigestioniberia.com"
+    ],
+    "url": "https://portal.zolva.es/",
+    "notes": "Sucesora operativa de Multigestión Iberia 2014; ANGECO. Email cumplimiento@zolva.es aparece de forma reiterada en firmas corporativas y reclamaciones públicas para ejercicio RGPD; cumplimiento@multigestioniberia.com es canal legacy. Web pública de privacidad ES poco transparente tras cambios societarios (Cerberus). Confidence likely - no inventar otros emails.",
+    "confidence": "likely",
+    "source_urls": [
+      "https://www.leyes.tv/zolva-platform-s-l-espana/",
+      "https://www.ocu.org/reclamar/lista-reclamaciones-publicas/acoso-y-violaci-C3-B3n-de-protecci-C3-B3/CPTES01110773-26",
+      "https://portal.zolva.es/WebJuridica/"
+    ]
+  },
+  {
+    "id": "solvia",
+    "name": "Solvia (servicing; entorno Haya/Intrum, residual Aktua)",
+    "category": "recobro",
+    "emails": [
+      "SolviaDPO@solvia.es"
+    ],
+    "alt_emails": [
+      "protecciondedatos@solvia.es"
+    ],
+    "url": "https://www.solvia.es/",
+    "notes": "Canal DPD documentado en política Solvia. Aktua NPL fue absorbida en el entorno Haya/Intrum; para Aktua preferir Intrum dpo.es@intrum.com. Solvia se añade como residual documentado del mismo ecosistema inmobiliario/servicing.",
+    "confidence": "documented",
+    "source_urls": [
+      "https://www.solvia.es/",
+      "/workspace/databy-grok/dpd-deepdive-aktua-arrow-recover.md"
+    ],
+    "related": [
+      "intrum_es",
+      "aktua_legacy"
+    ]
+  },
+  {
+    "id": "aktua_legacy",
+    "name": "Aktua (histórica; absorbida)",
+    "category": "recobro",
+    "emails": [
+      "dpo.es@intrum.com"
+    ],
+    "alt_emails": [],
+    "url": "https://www.intrum.es/",
+    "notes": "Aktua NPL extinguida/absorbida (~2025) en entorno Haya/Intrum (BORME). No hay DPD propio. Las peticiones van a Intrum (dpo.es@intrum.com). No duplicar envíos si Intrum ya está seleccionado.",
+    "confidence": "documented",
+    "source_urls": [
+      "/workspace/databy-grok/dpd-deepdive-aktua-arrow-recover.md"
+    ],
+    "alias_of": "intrum_es",
+    "legacy": true
+  }
+]
