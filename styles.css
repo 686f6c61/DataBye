@@ -617,3 +617,8 @@ h1 {
   }
   html { scroll-behavior: auto; }
 }
+
+.changelog h3 { margin: 1.25rem 0 0.5rem; font-size: 1.05rem; }
+.changelog h3 .muted { font-weight: 400; opacity: 0.55; font-size: 0.85em; }
+.changelog ul { margin: 0.35rem 0 0.75rem; padding-left: 1.2rem; }
+.changelog li { margin: 0.25rem 0; }
