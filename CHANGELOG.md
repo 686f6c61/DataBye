@@ -1,5 +1,15 @@
 # Changelog
 
+## 2.0.1 — 2026-09-18
+
+### Cambiado
+- Plantillas de petición (`templates/*.txt`) y wizard: el plazo del artículo 12.3 RGPD queda explícito (un mes, ampliable dos meses más si lo justifican e informan dentro del primer mes). El artículo 17 (supresión) ya figuraba.
+- Landing: marca escudo índigo (sin gota roja).
+- Dominio preferido: `https://databye.686f6c61.dev/` (alias `databy`).
+
+### Notas
+- El bot público de Grok hay que republicar la plantilla para que installs nuevos cojan la skill/cartas actualizadas.
+
 ## 2.0.0 — 2026-09-18
 
 Rewrite completo como paquete **solo Grok Bot** (España).

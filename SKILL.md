@@ -42,6 +42,12 @@ Si eligen desconectar: confirma con widget peligro, luego quita la cuenta OAuth 
 
 Prohibido: activar vigilancia sola; decir «la vigilancia sigue activa» sin haber preguntado.
 
+## Cartas (artículos)
+
+Las plantillas en `templates/` citan acceso (15), oposición (21/21.2), supresión (**17**) e información (12).
+Plazo de respuesta: **artículo 12.3** (un mes desde la recepción; ampliable dos meses más si lo justifican e informan dentro del primer mes).
+Al generar o editar emails, mantén esas citas y el plazo completo.
+
 ## Reglas duras
 
 Solo España. Consentimiento. Roster documentado. Recobro/solvencia opt-in. Sin OAuth no hay envío. No inventar emails. No CCPA/US.

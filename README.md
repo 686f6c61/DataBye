@@ -4,7 +4,7 @@
 
 DataBye Grok guía a una persona interesada en España a ejercer acceso, oposición y (cuando proceda) supresión frente a infomediarios, y de forma opcional frente a gestores de cobro y ficheros de solvencia. El envío real va por **Gmail u Outlook con OAuth**. Incluye un **wizard** HTML, roster auditable, plantillas y playbooks. Lista Robinson se trata como inscripción guiada en el formulario web (no como email de borrado).
 
-Versión **2.0.0**. Licencia MIT. Solo jurisdicción española (RGPD / LOPDGDD / AEPD). Sin Hermes, sin CLI Python ni SMTP local.
+Versión **2.0.1**. Licencia MIT. Solo jurisdicción española (RGPD / LOPDGDD / AEPD). Sin Hermes, sin CLI Python ni SMTP local.
 
 ## Usar en Grok Bot
 
