@@ -33,7 +33,7 @@ Solicito la supresión de mis datos personales cuando ya no sean necesarios para
 
 En consecuencia, les requiero que cesen la reutilización comercial, el enriquecimiento y cualquier tratamiento de mis datos con fines de marketing o información comercial que no cuente con base jurídica válida tras esta oposición.
 
-Les recuerdo el plazo de respuesta del artículo 12.3 RGPD (un mes desde la recepción de esta solicitud). Prefiero canal electrónico.
+Les recuerdo que, conforme al artículo 12.3 RGPD, deben responder sin dilación indebida y, a más tardar, en el plazo de un mes desde la recepción de esta solicitud. Ese plazo podrá ampliarse en dos meses más cuando sea necesario, atendiendo a la complejidad o al número de solicitudes, debiendo informarme de dicha ampliación y de los motivos dentro del primer mes. Prefiero canal electrónico.
 
 Atentamente,
 {full_name}
