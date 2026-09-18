@@ -1,0 +1,5 @@
+# DataBye landing (branch landing)
+# Product source of truth: https://github.com/686f6c61/DataBye (main)
+# Skill: SKILL.md | Wizard: wizard/wizard.html | Playbooks: playbooks/
+# Version 2.0.0 | MIT | Spain-only RGPD for Grok Bot
+# Site: index.html explains audit, wizard, flows, categories, Grok OAuth send.

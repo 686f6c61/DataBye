@@ -1,0 +1,1337 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCI+ICA8ZGVmcz4gICAgPGxpbmVhckdyYWRpZW50IGlkPSJnIiB4MT0iMzAlIiB5MT0iMTIlIiB4Mj0iNzIlIiB5Mj0iOTIlIj4gICAgICA8c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjZmY0ZDQyIi8+ICAgICAgPHN0b3Agb2Zmc2V0PSI1NSUiIHN0b3AtY29sb3I9IiNmZjNiMzAiLz4gICAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNiODAwMDAiLz4gICAgPC9saW5lYXJHcmFkaWVudD4gIDwvZGVmcz4gIDxyZWN0IHdpZHRoPSI2NCIgaGVpZ2h0PSI2NCIgcng9IjE0IiBmaWxsPSIjMGEwNTA1Ii8+ICA8cGF0aCBkPSJNMzIgOEMzMiA4IDE0IDI4IDE0IDQwYzAgMTAuNSA4IDE2IDE4IDE2czE4LTUuNSAxOC0xNkM1MCAyOCAzMiA4IDMyIDhaIiBmaWxsPSJ1cmwoI2cpIi8+ICA8ZWxsaXBzZSBjeD0iMjUiIGN5PSIzMiIgcng9IjYiIHJ5PSI5IiBmaWxsPSIjZmZmIiBmaWxsLW9wYWNpdHk9Ii4yOCIvPjwvc3ZnPg==" type="image/svg+xml">
+<title>DataBye · Wizard (simulación)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;500;600&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<meta name="theme-color" content="#050505">
+<style>
+  :root {
+    --bg: #050505;
+    --bg-soft: #0a0a0a;
+    --cream: #f5f0e6;
+    --cream-dim: rgba(245, 240, 230, 0.62);
+    --cream-faint: rgba(245, 240, 230, 0.28);
+    --line: rgba(245, 240, 230, 0.12);
+    --glow: rgba(245, 240, 230, 0.08);
+    --warn: #e8c94a;
+    --warn-bg: rgba(232, 201, 74, 0.08);
+    --warn-line: rgba(232, 201, 74, 0.28);
+    --mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    --sans: "IBM Plex Sans", system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+    --display: "Fraunces", Georgia, "Times New Roman", serif;
+    --radius: 16px;
+    --shadow: 0 12px 40px rgba(0, 0, 0, 0.45);
+    /* aliases used by wizard markup / inline styles */
+    --ink: var(--cream);
+    --muted: var(--cream-dim);
+    --accent: var(--cream);
+    --accent-dim: var(--cream-faint);
+    --accent-soft: var(--glow);
+    --card: var(--bg-soft);
+    --input-bg: #080808;
+    --font: var(--sans);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+
+  html {
+    color-scheme: dark;
+  }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: var(--bg);
+    color: var(--cream);
+    font-family: var(--sans);
+    font-size: 1.02rem;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  body {
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+  }
+
+  .grain {
+    pointer-events: none;
+    position: fixed;
+    inset: 0;
+    z-index: 50;
+    opacity: 0.045;
+    mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  a {
+    color: var(--cream);
+    text-underline-offset: 3px;
+    text-decoration-thickness: 1px;
+    text-decoration-color: var(--cream-faint);
+  }
+  a:hover { text-decoration-color: var(--cream); }
+
+  .wrap {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 2rem 1.25rem 3rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .progress {
+    display: flex;
+    gap: 0.4rem;
+    margin: 1.25rem 0 1.5rem;
+  }
+  .progress span {
+    flex: 1;
+    height: 5px;
+    border-radius: 99px;
+    background: var(--line);
+    transition: background 0.25s ease;
+  }
+  .progress span.on { background: var(--cream); }
+  .progress span.done { background: var(--cream-faint); }
+
+  .card {
+    background: var(--bg-soft);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 1.6rem 1.5rem 1.4rem;
+  }
+
+  .step { display: none; }
+  .step.active { display: block; animation: fade 0.28s ease; }
+  @keyframes fade {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: none; }
+  }
+
+  h2 {
+    font-family: var(--display);
+    font-size: 1.35rem;
+    margin: 0 0 0.75rem;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    color: var(--cream);
+  }
+  h3 {
+    font-family: var(--display);
+    font-size: 1.05rem;
+    margin: 1.25rem 0 0.5rem;
+    font-weight: 500;
+    color: var(--cream);
+  }
+
+  .lede {
+    color: var(--cream-dim);
+    margin: 0 0 1.1rem;
+    font-size: 0.98rem;
+  }
+  ul.calm {
+    margin: 0 0 1rem;
+    padding-left: 1.15rem;
+    color: var(--cream-dim);
+  }
+  ul.calm li { margin: 0.35rem 0; }
+
+  label.field {
+    display: block;
+    margin: 0.85rem 0 0.3rem;
+    font-size: 0.88rem;
+    font-weight: 500;
+    color: var(--cream);
+  }
+
+  input[type="text"], input[type="email"], textarea, select {
+    width: 100%;
+    padding: 0.7rem 0.8rem;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    font: inherit;
+    background: var(--input-bg);
+    color: var(--cream);
+  }
+  input:focus, textarea:focus, select:focus {
+    outline: 2px solid var(--cream-faint);
+    border-color: var(--cream-dim);
+  }
+  textarea { min-height: 110px; resize: vertical; }
+
+  .hint {
+    font-size: 0.82rem;
+    color: var(--cream-dim);
+    margin: 0.25rem 0 0;
+  }
+
+  .check {
+    display: flex;
+    gap: 0.65rem;
+    align-items: flex-start;
+    margin-top: 1.1rem;
+    padding: 0.85rem 1rem;
+    background: var(--glow);
+    border-radius: 12px;
+    border: 1px solid var(--line);
+  }
+  .check input { margin-top: 0.25rem; flex-shrink: 0; accent-color: var(--cream); }
+  .check.opt {
+    background: var(--input-bg);
+    border-color: var(--line);
+    margin-top: 0.85rem;
+  }
+  .check.opt .help {
+    display: block;
+    font-size: 0.85rem;
+    color: var(--cream-dim);
+    font-weight: 400;
+    margin-top: 0.35rem;
+  }
+
+  .note-box {
+    margin: 1rem 0;
+    padding: 0.9rem 1rem;
+    background: var(--warn-bg);
+    border-radius: 12px;
+    border: 1px solid var(--warn-line);
+    color: var(--warn);
+    font-size: 0.92rem;
+  }
+  .note-box strong { color: var(--cream); }
+
+  .opt-tag {
+    display: inline-block;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    font-family: var(--mono);
+    background: var(--glow);
+    color: var(--cream-dim);
+    border: 1px solid var(--line);
+    padding: 0.15rem 0.45rem;
+    border-radius: 6px;
+    vertical-align: middle;
+    margin-left: 0.35rem;
+  }
+
+  .badge {
+    display: inline-block;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    font-family: var(--mono);
+    padding: 0.12rem 0.4rem;
+    border-radius: 6px;
+    margin-left: 0.35rem;
+  }
+  .badge.doc {
+    background: var(--glow);
+    color: var(--cream);
+    border: 1px solid var(--line);
+  }
+  .badge.likely {
+    background: var(--warn-bg);
+    color: var(--warn);
+    border: 1px solid var(--warn-line);
+  }
+  .badge.web {
+    background: var(--glow);
+    color: var(--cream-dim);
+    border: 1px solid var(--line);
+  }
+
+  .target {
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 0.9rem 1rem;
+    margin: 0.65rem 0;
+    background: var(--input-bg);
+  }
+  .target-head {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+  }
+  .target-head .name { font-weight: 600; color: var(--cream); }
+  .target-head .meta {
+    font-size: 0.8rem;
+    color: var(--cream-dim);
+    margin-top: 0.2rem;
+    font-family: var(--mono);
+  }
+  .target.collapsed .body-edit { display: none; }
+
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 0.75rem;
+    margin-top: 1.4rem;
+    flex-wrap: wrap;
+  }
+
+  button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--sans);
+    font-weight: 500;
+    font-size: 0.95rem;
+    cursor: pointer;
+    border-radius: 999px;
+    padding: 0.7rem 1.2rem;
+    border: 1px solid transparent;
+    transition: background 0.2s, border-color 0.2s, color 0.2s;
+  }
+  button.primary {
+    background: var(--cream);
+    color: #050505;
+    border-color: var(--cream);
+  }
+  button.primary:hover {
+    background: #fff;
+    border-color: #fff;
+  }
+  button.primary:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+  }
+  button.ghost {
+    background: transparent;
+    border-color: var(--cream-faint);
+    color: var(--cream);
+  }
+  button.ghost:hover {
+    background: var(--glow);
+    border-color: var(--cream-dim);
+  }
+  button.secondary {
+    background: transparent;
+    color: var(--cream);
+    font-weight: 500;
+    border-color: var(--cream-faint);
+  }
+  button.secondary:hover {
+    background: var(--glow);
+    border-color: var(--cream-dim);
+  }
+
+  .summary dl { margin: 0; }
+  .summary dt {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--cream-dim);
+    margin-top: 0.85rem;
+    font-family: var(--mono);
+  }
+  .summary dd { margin: 0.2rem 0 0; color: var(--cream); }
+
+  .footer-note {
+    text-align: center;
+    margin-top: 1.5rem;
+    font-size: 0.8rem;
+    color: var(--cream-faint);
+    font-family: var(--mono);
+  }
+
+  code {
+    font-family: var(--mono);
+    font-size: 0.86em;
+    color: var(--cream-dim);
+    background: var(--glow);
+    padding: 0.1rem 0.35rem;
+    border-radius: 4px;
+  }
+
+  .topbar { margin-bottom: 0.25rem; }
+  .topbar-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.95rem 1.05rem;
+    background: rgba(10, 10, 10, 0.85);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    backdrop-filter: blur(14px);
+  }
+  .brand-mark {
+    width: 32px;
+    height: 32px;
+    flex-shrink: 0;
+    display: block;
+    filter: drop-shadow(0 0 8px rgba(109, 94, 245, 0.45));
+  }
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    text-align: left;
+    text-decoration: none;
+    color: var(--cream);
+  }
+  .brand-title {
+    font-family: var(--display);
+    font-weight: 500;
+    font-size: 1.15rem;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+  }
+  .brand-sub {
+    font-size: 0.78rem;
+    color: var(--cream-dim);
+    font-family: var(--mono);
+    margin-top: 0.2rem;
+  }
+  .header-icons { display: flex; gap: 0.45rem; flex-wrap: wrap; }
+  .header-icons .hi {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 999px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--glow);
+    color: var(--cream-dim);
+    border: 1px solid var(--line);
+    font-size: 0.9rem;
+    font-weight: 600;
+  }
+
+  .empty-hint {
+    color: var(--cream-dim);
+    font-size: 0.92rem;
+    font-style: italic;
+    margin: 0.75rem 0;
+  }
+  .adv-toggle { margin-top: 0.75rem; font-size: 0.88rem; }
+  .adv-toggle summary {
+    cursor: pointer;
+    color: var(--cream-dim);
+  }
+  .portal-link {
+    display: inline-block;
+    margin-top: 0.4rem;
+    font-size: 0.88rem;
+  }
+  .legal-links {
+    margin: 0.75rem 0 0;
+    padding-left: 1.15rem;
+  }
+  .legal-links li { margin: 0.4rem 0; }
+  .legal-links a {
+    color: var(--cream);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    text-decoration-color: var(--cream-faint);
+    word-break: break-word;
+  }
+  .legal-links a:hover { text-decoration-color: var(--cream); }
+
+  .cat-block {
+    margin: 1rem 0;
+    padding: 0.9rem 1rem;
+    background: var(--input-bg);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+  }
+  .cat-block strong { color: var(--cream); }
+  .cat-block p {
+    margin: 0.35rem 0 0;
+    color: var(--cream-dim);
+    font-size: 0.94rem;
+  }
+
+  .robinson-block {
+    border-color: var(--line) !important;
+    background: var(--input-bg) !important;
+  }
+
+  .site-footer {
+    max-width: 780px;
+    margin: 1.5rem auto 2.5rem;
+    padding: 1.25rem 1.25rem 0;
+    border-top: 1px solid var(--line);
+    font-size: 0.85rem;
+    color: var(--cream-faint);
+    position: relative;
+    z-index: 1;
+  }
+  .site-footer a {
+    color: var(--cream-dim);
+    text-decoration: none;
+  }
+  .site-footer a:hover {
+    color: var(--cream);
+    text-decoration: underline;
+  }
+  .site-footer p { margin: 0.35rem 0; }
+
+  .toast-host {
+    position: fixed; left: 50%; bottom: 1.25rem; transform: translateX(-50%);
+    z-index: 200; display: flex; flex-direction: column; gap: 0.5rem;
+    width: min(420px, calc(100% - 2rem)); pointer-events: none;
+  }
+  .toast {
+    pointer-events: auto; padding: 0.75rem 1rem; border-radius: 12px;
+    background: #1a1a1a; color: #f5f0e6; border: 1px solid rgba(245,240,230,0.18);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.45); font-size: 0.92rem; line-height: 1.4;
+    animation: toastIn 0.25s ease;
+  }
+  .toast.warn { border-color: rgba(255,59,48,0.45); }
+  .toast.info { border-color: rgba(245,240,230,0.28); }
+  .demo-banner {
+    margin: 0 0 1rem; padding: 0.65rem 0.9rem; border-radius: 10px;
+    background: rgba(255,59,48,0.12); border: 1px solid rgba(255,59,48,0.35);
+    color: #f5f0e6; font-size: 0.88rem;
+  }
+  .demo-pill {
+    display: inline-flex; align-items: center; gap: 0.3rem;
+    margin-left: 0.45rem; padding: 0.15rem 0.5rem; border-radius: 999px;
+    font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.05em;
+    text-transform: uppercase; color: #ff5a4f;
+    border: 1px solid rgba(255,59,48,0.45); vertical-align: middle;
+  }
+  @keyframes toastIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+
+</style>
+</head>
+<body>
+<div class="toast-host" id="toast-host" aria-live="polite"></div>
+<div class="grain" aria-hidden="true"></div>
+<div class="wrap">
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">
+        <svg class="brand-mark" width="32" height="32" viewBox="0 0 32 32" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="wbdg" x1="28%" y1="8%" x2="74%" y2="94%">
+              <stop offset="0%" stop-color="#a99cff"/>
+              <stop offset="50%" stop-color="#6d5ef5"/>
+              <stop offset="100%" stop-color="#3d2ea8"/>
+            </linearGradient>
+          </defs>
+          <path d="M16 3.2C20.8 5.1 25 6.1 26.7 6.5c.8.2 1.3.9 1.3 1.7V16c0 5.5-4.1 9.5-12 12C8.1 25.5 4 21.5 4 16V8.2c0-.8.5-1.5 1.3-1.7C7 6.1 11.2 5.1 16 3.2Z" fill="url(#wbdg)"/>
+          <path d="M10.8 16.2l3.3 3.3 7.3-7.6" fill="none" stroke="#f5f0e6" stroke-width="2.15" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <div>
+          <div class="brand-title">DataBye Grok <span class="demo-pill">Simulación · demo</span></div>
+          <div class="brand-sub">asistente · Solo España · vista previa (no envía)</div>
+        </div>
+      </div>
+      <div class="header-icons" aria-hidden="true">
+        <span class="hi" title="Consentimiento">✓</span>
+        <span class="hi" title="DNI opcional">*</span>
+        <span class="hi" title="Alcance">+</span>
+        <span class="hi" title="Mails">✉</span>
+        <span class="hi" title="Export">↓</span>
+      </div>
+    </div>
+  </header>
+
+  <div class="demo-banner" role="status"><strong>Simulación / demo</strong> — puede avanzar sin rellenar. Datos de ejemplo (María Ejemplo). No se envía correo ni OAuth desde aquí.</div>
+
+  <div class="progress" aria-hidden="true">
+    <span data-i="0"></span>
+    <span data-i="1"></span>
+    <span data-i="2"></span>
+    <span data-i="3"></span>
+    <span data-i="4"></span>
+    <span data-i="5"></span>
+    <span data-i="6"></span>
+  </div>
+
+  <!-- 0 Inicio -->
+  <section class="card step active" data-step="0" id="step-0">
+    <h2>Inicio · Qué va a ocurrir</h2>
+    <p class="lede">DataBye Grok prepara las peticiones RGPD / LOPDGDD y, al terminar, conecta su Gmail u Outlook para enviarlas por usted. Este asistente recoge datos, categorías y el texto de las cartas. El envío lo hace Grok Bot con la tarjeta OAuth.</p>
+    <ul class="calm">
+      <li>Le pediremos nombre, emails y ciudad, con su consentimiento.</li>
+      <li><strong>DNI/NIE opcional</strong>: solo si quiere adjuntarlo al mail; tras el escrito pueden pedir el original.</li>
+      <li>Por defecto solo se incluyen infomediarios. Recobro y solvencia son opt-in.</li>
+      <li>Podrá editar asunto y cuerpo por destinatario. Al final, Grok Bot conecta Gmail u Outlook y envía.</li>
+    </ul>
+    <div class="note-box">En producción, sin consentimiento no se preparan peticiones. Esta página es una <strong>simulación</strong>: Continuar siempre avanza. DataBye no es un despacho de abogados.</div>
+    <div class="nav">
+      <span></span>
+      <button type="button" class="primary" data-next>Continuar</button>
+    </div>
+  </section>
+
+
+  <!-- 1 Categorías y amparo legal -->
+  <section class="card step" data-step="1" id="step-1">
+    <h2>Categorías y amparo legal</h2>
+    <p class="lede">Antes de elegir a quién escribir, conviene entender qué es cada categoría y en qué normas se apoyan estas peticiones.</p>
+
+    <div class="cat-block">
+      <strong>1. Qué es un broker / infomediario</strong>
+      <p>Empresa que reutiliza datos mercantiles o de contacto para productos de información o marketing. No es necesariamente quien le cobró una deuda.</p>
+    </div>
+    <div class="cat-block">
+      <strong>2. Infomediarios</strong> <span class="opt-tag">incluido por defecto</span>
+      <p>Acceso, oposición y, cuando proceda, supresión frente a la reutilización comercial de sus datos.</p>
+    </div>
+    <div class="cat-block">
+      <strong>3. Recobro</strong> <span class="opt-tag">opcional</span>
+      <p>Gestores de cobro o compra de deuda. Puede pedir acceso e identidad del acreedor. Este trámite no cancela la deuda civil.</p>
+    </div>
+    <div class="cat-block">
+      <strong>4. Solvencia</strong> <span class="opt-tag">opcional</span>
+      <p>Ficheros ASNEF/BADEXCUG y similares (art. 20 LOPDGDD). Es un trámite distinto del recobro.</p>
+    </div>
+
+    <h3>Amparo normativo y doctrina AEPD</h3>
+    <p class="hint">La AEPD publica FAQ, informes del Gabinete Jurídico y resoluciones; no siempre bajo el rótulo «consulta vinculante».</p>
+
+    <p style="margin:0.75rem 0 0.25rem;font-weight:600;font-size:0.9rem;">Normas</p>
+    <ul class="legal-links">
+      <li><a href="https://eur-lex.europa.eu/legal-content/ES/TXT/?uri=CELEX:32016R0679" target="_blank" rel="noopener">RGPD (Reglamento (UE) 2016/679)</a></li>
+      <li><a href="https://www.boe.es/buscar/act.php?id=BOE-A-2018-16673" target="_blank" rel="noopener">LOPDGDD (Ley Orgánica 3/2018)</a></li>
+    </ul>
+
+    <p style="margin:1rem 0 0.25rem;font-weight:600;font-size:0.9rem;">AEPD: FAQ, informes y resoluciones</p>
+    <ul class="legal-links">
+      <li><a href="https://www.aepd.es/preguntas-frecuentes/7-solvencia-patrimonial" target="_blank" rel="noopener">FAQ solvencia (índice)</a></li>
+      <li><a href="https://www.aepd.es/preguntas-frecuentes/7-solvencia-patrimonial/FAQ-0705-es-legal-la-actuacion-de-una-empresa-de-recobros" target="_blank" rel="noopener">FAQ 7.5 empresas de recobros</a></li>
+      <li><a href="https://www.aepd.es/preguntas-frecuentes/7-solvencia-patrimonial/FAQ-0701-que-requisitos-son-necesarios-para-incluir-a-una-persona-fisica-en-un-tratamiento-de-solvencia-patrimonial-y-credito" target="_blank" rel="noopener">FAQ 7.1 requisitos de inclusión</a></li>
+      <li><a href="https://www.aepd.es/preguntas-frecuentes/7-solvencia-patrimonial/FAQ-0706-cuanto-tiempo-puedo-estar-incluido-en-un-tratamiento-de-solvencia-patrimonial-y-credito" target="_blank" rel="noopener">FAQ 7.6 plazo / pago</a></li>
+      <li><a href="https://www.aepd.es/preguntas-frecuentes/7-solvencia-patrimonial/FAQ-0710-ya-he-pagado-mi-deuda-y-sigo-incluido-en-un-tratamiento-de-solvencia-patrimonial-y-credito" target="_blank" rel="noopener">FAQ 7.10 tras el pago</a></li>
+      <li><a href="https://www.aepd.es/documento/2023-0030.pdf" target="_blank" rel="noopener">Informe GJ 0030/2023</a></li>
+      <li><a href="https://www.aepd.es/documento/ai-00082-2023.pdf" target="_blank" rel="noopener">AI/00082/2023</a></li>
+      <li><a href="https://www.aepd.es/documento/e-13222-2021.pdf" target="_blank" rel="noopener">E/13222/2021</a></li>
+    </ul>
+
+    <div class="nav">
+      <button type="button" class="ghost" data-prev>Atrás</button>
+      <button type="button" class="primary" data-next>Continuar</button>
+    </div>
+  </section>
+
+  <!-- 2 Datos + consentimiento -->
+  <section class="card step" data-step="2" id="step-2">
+    <h2>Sus datos</h2>
+    <p class="lede">Solo lo necesario para las cartas. País: España.</p>
+    <label class="field" for="full_name">Nombre completo</label>
+    <input type="text" id="full_name" autocomplete="name" placeholder="María Ejemplo" />
+    <label class="field" for="emails">Emails (varios, separados por coma)</label>
+    <input type="text" id="emails" autocomplete="email" placeholder="maria@example.com, maria.alt@example.com" />
+    <label class="field" for="aliases">Alias / otros nombres <span class="opt-tag">opcional</span></label>
+    <input type="text" id="aliases" placeholder="M. Ejemplo" />
+    <label class="field" for="city">Ciudad <span class="opt-tag">opcional</span></label>
+    <input type="text" id="city" autocomplete="address-level2" placeholder="Madrid" />
+    <label class="field" for="dni">DNI / NIE <span class="opt-tag">opcional</span></label>
+    <input type="text" id="dni" autocomplete="off" placeholder="Opcional" />
+    <p class="hint">Solo si quiere adjuntarlo en el mail. Tras el escrito, algunos DPD pueden pedir el documento original o una copia. Por defecto no se adjunta ni se escribe en el cuerpo de la carta.</p>
+    <label class="field" style="display:flex;align-items:flex-start;gap:0.55rem;font-weight:500;margin-top:0.65rem;">
+      <input type="checkbox" id="dni_attach" style="margin-top:0.2rem;" />
+      <span>Quiero que Grok pueda adjuntar el DNI/NIE al correo si hace falta (usted lo confirma al enviar).</span>
+    </label>
+    <div class="check">
+      <input type="checkbox" id="consent" />
+      <label for="consent">Consiento el uso de DataBye Grok para preparar el ejercicio de acceso, oposición y supresión frente a destinatarios del roster, y que Grok Bot envíe las peticiones tras conectar Gmail u Outlook.</label>
+    </div>
+    <div class="nav">
+      <button type="button" class="ghost" data-prev>Atrás</button>
+      <button type="button" class="primary" data-next>Continuar</button>
+    </div>
+  </section>
+
+
+  <!-- 3 Ampliar alcance -->
+  <section class="card step" data-step="3" id="step-3">
+    <h2>Ampliar el alcance <span class="opt-tag">opcional</span></h2>
+    <p class="lede">Puede limitar la petición a empresas de información comercial (recomendado) o ampliarla a gestores de cobro y ficheros de morosidad. Ampliar no cancela deudas ni garantiza el borrado total.</p>
+    <p class="hint">Ver explicación y enlaces en el paso Categorías y amparo legal.</p>
+    <div class="check opt">
+      <input type="checkbox" id="opt_recobro" />
+      <label for="opt_recobro">
+        <strong>Incluir empresas de recobro o gestión de cobros</strong>
+        <span class="help">Estas entidades contactan para recuperar deudas o gestionan carteras. Puede pedir acceso a sus datos, que identifiquen al acreedor y, cuando proceda, oposición o supresión. No prometemos que borren todo si la deuda sigue vigente o deben conservar datos por ley o para reclamar.</span>
+      </label>
+    </div>
+    <div class="check opt">
+      <input type="checkbox" id="opt_solvency" />
+      <label for="opt_solvency">
+        <strong>Incluir ficheros de solvencia patrimonial (ASNEF, BADEXCUG…)</strong>
+        <span class="help">Son ficheros de impagos (art. 20 LOPDGDD). Sirven para consultar si figura y pedir rectificación o baja si la deuda es inexacta, está pagada o no cumplen los requisitos. Es un trámite distinto del recobro.</span>
+      </label>
+    </div>
+
+    <div class="robinson-block" id="robinson-block" style="margin-top:1.25rem;padding:1rem 1.05rem;border:1px solid var(--line);border-radius:12px;background:var(--input-bg);">
+      <h3 style="margin-top:0;">Lista Robinson <span class="opt-tag">opcional</span></h3>
+      <p class="hint" style="margin-bottom:0.75rem;">Exclusión de publicidad de Adigital. No borra datos de infomediarios ni cancela deudas. La inscripción es un formulario web (captcha + verificación por email); el efecto puede tardar hasta unos 2 meses. URL oficial: <a href="https://www.listarobinson.es/register-consumer" target="_blank" rel="noopener">listarobinson.es/register-consumer</a>.</p>
+      <div class="check opt" style="margin-top:0.5rem;">
+        <input type="radio" name="robinson_action" id="robinson_skip" value="skip" checked />
+        <label for="robinson_skip"><strong>No hacer nada ahora</strong> <span class="help">Omitir Lista Robinson en este flujo (opción por defecto).</span></label>
+      </div>
+      <div class="check opt">
+        <input type="radio" name="robinson_action" id="robinson_guide" value="guide" />
+        <label for="robinson_guide"><strong>Quiero que Grok me guíe</strong> <span class="help">Grok Bot le acompañará en <a href="https://www.listarobinson.es/register-consumer" target="_blank" rel="noopener">https://www.listarobinson.es/register-consumer</a> (formulario, captcha y verificación de email).</span></label>
+      </div>
+      <div class="check opt">
+        <input type="radio" name="robinson_action" id="robinson_done" value="done" />
+        <label for="robinson_done"><strong>Ya estoy inscrito / lo haré yo</strong> <span class="help">No hace falta guía; solo se anota en el handoff.</span></label>
+      </div>
+    </div>
+
+    <div class="note-box" id="legal-banner">
+      DataBye le ayuda a ejercer derechos del RGPD. No es un despacho de abogados. La AEPD no resuelve si una deuda existe o no. Si solo le reclamaron una deuda, primero pida acceso e identificación del acreedor.
+    </div>
+    <p class="empty-hint" id="empty-extra">Si no marca nada extra, seguiremos solo con el listado de infomediarios.</p>
+    <div class="nav">
+      <button type="button" class="ghost" data-prev>Atrás</button>
+      <button type="button" class="primary" data-next>Continuar</button>
+    </div>
+  </section>
+
+  <!-- 4 Destinatarios -->
+  <section class="card step" data-step="4" id="step-4">
+    <h2>Destinatarios</h2>
+    <p class="lede">Infomediarios siempre incluidos. Ajuste las listas opcionales si las activó.</p>
+
+    <div id="block-info">
+      <h3>Infomediarios <span class="opt-tag">núcleo</span></h3>
+      <p class="hint">Preseleccionados. Puede desmarcar alguno.</p>
+      <div id="list-info"></div>
+    </div>
+
+    <div id="block-recobro" hidden>
+      <h3>Recobro / gestión de cobros</h3>
+      <p class="hint">Documentados premarcados. Solo entidades con email documentado o probable.</p>
+      <div id="list-recobro"></div>
+    </div>
+
+    <div id="block-solvency" hidden>
+      <h3>Ficheros de solvencia</h3>
+      <p class="hint">Equifax/ASNEF y Experian/BADEXCUG premarcados. Confirma (fraude) es opcional. Experian sin email de envío se trata como portal web. RAI en avanzado.</p>
+      <div id="list-solvency"></div>
+      <details class="adv-toggle" id="rai-adv">
+        <summary>Avanzado: soy empresa / RAI</summary>
+        <div id="list-rai"></div>
+      </details>
+    </div>
+
+    <div class="nav">
+      <button type="button" class="ghost" data-prev>Atrás</button>
+      <button type="button" class="primary" data-next>Continuar</button>
+    </div>
+  </section>
+
+  <!-- 5 Editar mails -->
+  <section class="card step" data-step="5" id="step-5">
+    <h2>Editar mails</h2>
+    <p class="lede">Destinatarios seleccionados con asunto y cuerpo editables. Plantilla según categoría. Placeholders: <code>{full_name}</code>, <code>{email}</code>, <code>{broker_name}</code>, <code>{date}</code>, <code>{location}</code>.</p>
+    <label class="field" for="append_note">Nota global al final de cada carta <span class="opt-tag">opcional</span></label>
+    <textarea id="append_note" placeholder="Prefiero respuesta solo por email."></textarea>
+    <div id="edit-list"></div>
+    <div class="nav">
+      <button type="button" class="ghost" data-prev>Atrás</button>
+      <button type="button" class="primary" data-next>Ver resumen y seguir</button>
+    </div>
+  </section>
+
+  <!-- 6 Resumen -->
+  <section class="card step" data-step="6" id="step-6">
+    <h2>Listo · Seguir con Grok Bot</h2>
+    <p class="lede">Revise el resumen. El siguiente paso es conectar Gmail u Outlook (tarjeta OAuth) para que Grok Bot envíe las cartas. No hace falta descargar ningún JSON.</p>
+    <div class="summary" id="summary"></div>
+    <div class="check" style="margin-top:1rem;">
+      <input type="checkbox" id="legal_ack" />
+      <label for="legal_ack">He leído el aviso: DataBye ayuda a ejercer derechos RGPD, no es un despacho, y ampliar el alcance no cancela deudas ni garantiza el borrado total.</label>
+    </div>
+    <div class="note-box" style="margin-top:1rem;">
+      <strong>Qué hará Grok Bot a continuación:</strong>
+      Abrir la conexión de Gmail u Outlook, confirmar la cuenta, y enviar las peticiones a los emails oficiales del roster (sin adjuntar DNI). Los destinos <span class="badge web">web_form</span> se abren en el portal, no por email vacío.
+    </div>
+    <label class="field" for="handoff">Instrucción para el chat (cópiela si abrió este HTML fuera de Grok)</label>
+    <textarea id="handoff" rows="5" readonly style="width:100%;font-family:var(--mono);font-size:0.8rem;"></textarea>
+    <div class="nav">
+      <button type="button" class="ghost" data-prev>Atrás</button>
+      <div style="display:flex;gap:0.5rem;flex-wrap:wrap;">
+        <button type="button" class="secondary" id="btn-copy">Copiar instrucción</button>
+        <button type="button" class="primary" id="btn-handoff">Seguir: conectar correo y enviar</button>
+      </div>
+    </div>
+    <p class="hint" id="handoff-status" style="margin-top:0.75rem;"></p>
+  </section>
+
+  <p class="footer-note">DataBye Grok · Asistente para Grok Bot · Gmail / Outlook</p>
+</div>
+
+<footer class="site-footer">
+  <p>Mantenido por <a href="https://github.com/686f6c61">686f6c61</a>
+  · también en <a href="https://x.com/686f6c61">X</a>.</p>
+  <p>Basado en las ideas de <a href="https://github.com/LiamFallen" target="_blank" rel="noopener">LiamFallen</a>.</p>
+</footer>
+
+<script>
+(function () {
+  "use strict";
+
+  var ROSTER_INFO = [{"id": "axesor", "name": "Axesor", "category": "infomediarios", "emails": ["dpd@axesor.es"], "alt_emails": [], "url": "https://www.axesor.es", "confidence": "documented"}, {"id": "informa", "name": "Informa", "category": "infomediarios", "emails": ["dpo@informa.es"], "alt_emails": ["protecciondedatos@informa.es"], "url": "https://www.informa.es", "confidence": "documented"}, {"id": "einforma", "name": "eInforma", "category": "infomediarios", "emails": ["clientes@einforma.com"], "alt_emails": [], "url": "https://www.einforma.com", "confidence": "documented"}, {"id": "accumin", "name": "Accumin (Datacentric)", "category": "infomediarios", "emails": ["dpd.datacentric@accumin.com"], "alt_emails": ["privacidad.datacentric@accumin.com"], "url": "https://www.accumin.com/es/intelligence", "confidence": "documented"}, {"id": "iberinform", "name": "Iberinform", "category": "infomediarios", "emails": ["infoprotecciondatosiber@iberinform.es"], "alt_emails": [], "url": "https://www.iberinform.es", "confidence": "documented"}, {"id": "camerdata", "name": "Camerdata", "category": "infomediarios", "emails": ["informacion@camerdata.es"], "alt_emails": [], "url": "https://www.camerdata.es", "confidence": "documented"}, {"id": "netamo", "name": "Netamo (Dato Capital)", "category": "infomediarios", "emails": ["privacy@netamo.com"], "alt_emails": [], "url": "https://www.netamo.com", "confidence": "documented"}, {"id": "equifax_info", "name": "Equifax España (infomediario / marketing)", "category": "infomediarios", "emails": ["sac@equifax.es"], "alt_emails": [], "url": "https://www.equifax.es", "confidence": "documented", "notes": "Canal genérico Equifax; para fichero ASNEF use la categoría solvencia."}, {"id": "infoempresa", "name": "Infoempresa", "category": "infomediarios", "emails": ["contacto@infoempresa.com"], "alt_emails": [], "url": "https://www.infoempresa.com/", "notes": "Asociado ASEDIE-style / infomediario de datos mercantiles. FAQ documenta contacto@infoempresa.com para modificar datos de cargos/personas físicas tras acreditar. No está en el núcleo actual DataBye brokers.", "confidence": "documented", "source_urls": ["https://www.infoempresa.com/es-es/es/faqs", "https://www.asedie.es/es/nuestros-asociados"]}, {"id": "inatlas", "name": "inAtlas (Intelligent Atlas)", "category": "infomediarios", "emails": ["info@inatlas.com"], "alt_emails": [], "url": "https://www.inatlas.com/", "notes": "Asociado ASEDIE (geomarketing/datos). Cláusula de privacidad en web indica ejercicio de derechos en info@inatlas.com. Canal genérico pero documentado para ARCO.", "confidence": "documented", "source_urls": ["https://www.inatlas.com/es/empresa/", "https://www.asedie.es/es/nuestros-asociados"]}, {"id": "credito_y_caucion", "name": "Crédito y Caución (Atradius)", "category": "infomediarios", "emails": ["dpo@atradius.com"], "alt_emails": [], "url": "https://www.creditoycaucion.es/", "notes": "Seguro de crédito + inteligencia/información empresarial B2B (grupo Atradius). Declaración de privacidad ES documenta DPO en dpo@atradius.com.", "confidence": "documented", "source_urls": ["https://www.creditoycaucion.es/es/declaracion-de-privacidad"]}, {"id": "economia3", "name": "Economía 3 (ECO3 Multimedia)", "category": "infomediarios", "emails": ["lopd.empresas@economia3.com"], "alt_emails": ["administracion@economia3.info", "marketing@economia3.info"], "url": "https://economia3.com/", "notes": "Asociado ASEDIE. Política de privacidad documenta DPD lopd.empresas@economia3.com; derechos también a administracion@economia3.info. Perfil más media/datos editoriales que bureau mercantil clásico.", "confidence": "documented", "source_urls": ["https://economia3.com/politica-de-privacidad/", "https://www.asedie.es/es/nuestros-asociados"]}, {"id": "coregistros", "name": "CoRegistros", "category": "infomediarios", "emails": ["dpo@coregistros.com"], "alt_emails": ["info@coregistros.com"], "url": "https://www.coregistros.com/", "notes": "Broker/enriquecimiento leads B2C y B2B (España, sede Barcelona). Política de privacidad documenta DPO dpo@coregistros.com para ejercicio de derechos RGPD.", "confidence": "documented", "source_urls": ["https://www.coregistros.com/fr/politique-de-confidentialite/"]}];
+  var ROSTER_RECOBRO = [{"id": "intrum_es", "name": "Intrum Servicing Spain", "category": "recobro", "emails": ["dpo.es@intrum.com"], "alt_emails": ["info.spain@intrum.com"], "url": "https://www.intrum.es/", "notes": "DPO documentado en política de privacidad ES. Lindorff España pasó a Intrum. También formulario de derechos en web. No duplicar como Lowell ES.", "confidence": "documented", "source_urls": ["https://www.intrum.es/particulares/sobre-intrum/privacidad/politica-de-privacidad/", "https://www.intrum.es/particulares/sobre-intrum/privacidad/derechos-de-los-sujetos-de-datos/"]}, {"id": "eos_spain", "name": "EOS Spain", "category": "recobro", "emails": ["dpo@eos-spain.es"], "alt_emails": ["protecciondatos@eos-spain.es"], "url": "https://es.eos-solutions.com/", "notes": "DPO y canal protecciondatos documentados en Aviso de Privacidad. Grupo EOS (no confundir con eosiberica.es de Córdoba).", "confidence": "documented", "source_urls": ["https://es.eos-solutions.com/privacy-notice/", "https://es.eos-solutions.com/personal-data-processing0/"]}, {"id": "axactor_es", "name": "Axactor España", "category": "recobro", "emails": ["derechosarco@axactor.com"], "alt_emails": [], "url": "https://www.axactor.com/es/", "notes": "Canal derechos ARCO / DPD documentado en política de privacidad (derechosarco@axactor.com). Compra/servicing de deuda.", "confidence": "documented", "source_urls": ["https://www.axactor.com/es/politica-de-privacidad"]}, {"id": "cabot_es", "name": "Cabot Financial Spain", "category": "recobro", "emails": ["proteccion.datos@cabotfinancial.es"], "alt_emails": [], "url": "https://cabotfinancial.es/", "notes": "Email de ejercicio de derechos y DPD documentado en política de privacidad.", "confidence": "documented", "source_urls": ["https://cabotfinancial.es/politica-de-privacidad/"]}, {"id": "kruk_es", "name": "KRUK España", "category": "recobro", "emails": ["info@es.kruk.eu"], "alt_emails": ["dpo@es.kruk.eu"], "url": "https://es.kruk.eu/", "notes": "Ejercicio de derechos: info@es.kruk.eu (página deudores). DPO: dpo@es.kruk.eu. Suele actuar como encargada de InvestCapital u otros acreedores. ANGECO.", "confidence": "documented", "source_urls": ["https://es.kruk.eu/me-estan-reclamando-una-deuda/", "https://es.kruk.eu/politica-de-privacidad/"]}, {"id": "gescobro", "name": "Gescobro Collection Services", "category": "recobro", "emails": ["dpo@gescobro.com"], "alt_emails": ["compliance@gescobro.com"], "url": "https://www.gescobro.com/", "notes": "DPO y compliance documentados. Servicing y compra de carteras. Web también en gcbe.es. Cita ASNEF/BADEXCUG en su política.", "confidence": "documented", "source_urls": ["https://gcbe.es/politica-de-privacidad/"]}, {"id": "isgf", "name": "ISGF Informes Comerciales", "category": "recobro", "emails": ["proteccion.datos@isgf.es"], "alt_emails": ["info@isgf.es", "n.datos@isgf.es"], "url": "https://www.isgf.es/", "notes": "Gestora de cobros; proteccion.datos@isgf.es aparece en política/Derechos ARCO. Aparece en resoluciones AEPD como gestora.", "confidence": "documented", "source_urls": ["https://www.isgf.es/PoliticaPrivacidad", "https://isgf.es/DerechosARCO/DerechosArco"]}, {"id": "hoist_spain", "name": "Hoist Finance Spain", "category": "recobro", "emails": ["protecciondatos@hoistfinance.com"], "alt_emails": ["clientes@hoistfinance.com", "dpo@hoistfinance.com"], "url": "https://www.hoistfinance.es/", "notes": "Compradora de créditos. Política ES: protecciondatos@hoistfinance.com (DPD Spain/grupo local). dpo@hoistfinance.com es DPO de grupo (sede Suecia).", "confidence": "documented", "source_urls": ["https://www.hoistfinance.es/conoce-hoist/politica-de-privacidad/", "https://www.hoistfinance.com/about-us/privacy/"]}, {"id": "b2_impact_es", "name": "B2 Impact España (antes Verifica)", "category": "recobro", "emails": ["dpo.es@b2-impact.com"], "alt_emails": ["contacto.es@b2-impact.com", "info.legal.es@b2-impact.com"], "url": "https://www.b2-impact.es/", "notes": "Filial española de B2 Impact ASA (compra/servicing de deuda). Política de privacidad ES documenta dpo.es@b2-impact.com para derechos RGPD, con sección específica de deudores. No confundir con Zolva/Multigestión (operación Iberia vendida a Cerberus).", "confidence": "documented", "source_urls": ["https://www.b2-impact.es/politica-privacidad/", "https://www.b2-impact.es/contacto/"]}, {"id": "gemini_recoveries", "name": "Gemini Recoveries & Collections", "category": "recobro", "emails": ["dpd@geminicollections.com"], "alt_emails": ["info@geminicollections.com"], "url": "https://www.geminicollections.com/", "notes": "Gestora de cobros (ciclo completo del crédito). Política de privacidad documenta DPD en dpd@geminicollections.com; derechos también vía info@geminicollections.com. Sede Madrid.", "confidence": "documented", "source_urls": ["https://www.geminicollections.com/en/privacy/", "https://www.geminicollections.com/aviso-legal/"]}, {"id": "anticipa", "name": "Anticipa Real Estate", "category": "recobro", "emails": ["DPD@anticipa.com"], "alt_emails": ["lopd@anticipa.com"], "url": "https://anticipa.com/", "notes": "Servicer inmobiliario / deuda colateralizada (carteras NPL/REO). Canal DPD citado en páginas oficiales Anticipa: DPD@anticipa.com; lopd@anticipa.com aparece como canal LOPD/derechos.", "confidence": "documented", "source_urls": ["https://anticipa.com/politica-de-proteccion-de-datos", "https://anticipa.com/en/data-protection-policy", "https://anticipa.com/en/internal-information-channel"]}, {"id": "servihabitat", "name": "Servihabitat Servicios Inmobiliarios", "category": "recobro", "emails": ["protecciondatos@servihabitat.com"], "alt_emails": ["cumplimientonormativo@servihabitat.com"], "url": "https://www.servihabitat.com/", "notes": "Servicer inmobiliario. Condiciones legales CRM/inversión documentan protecciondatos@servihabitat.com para ejercicio de derechos y cumplimientonormativo@servihabitat.com para DPO.", "confidence": "documented", "source_urls": ["https://www.servihabitat.com/es/condiciones-legales-crm", "https://www.servihabitat.com/es/condiciones-legales-inversioninmobiliaria"]}, {"id": "cofidis_es", "name": "Cofidis S.A. Sucursal en España", "category": "recobro", "emails": ["protecciondatos@cofidis.es"], "alt_emails": ["dpocofidis@cofidis.es"], "url": "https://www.cofidis.es/", "notes": "Entidad de crédito al consumo; trata cobros/impagos y comunica a ASNEF/BADEXCUG. Política oficial: protecciondatos@cofidis.es para derechos; DPO dpocofidis@cofidis.es. Acreedor-collections: incluir cuando el usuario identifica a Cofidis.", "confidence": "documented", "source_urls": ["https://www.cofidis.es/es/informacion-legal/proteccion-datos.html", "https://retail.cofidis.es/es/informacion-legal/proteccion-datos.html"]}, {"id": "zolva_es", "name": "Zolva Platform (ex Multigestión Iberia)", "category": "recobro", "emails": ["cumplimiento@zolva.es"], "alt_emails": ["cumplimiento@multigestioniberia.com"], "url": "https://portal.zolva.es/", "notes": "Sucesora operativa de Multigestión Iberia 2014; ANGECO. Email cumplimiento@zolva.es aparece de forma reiterada en firmas corporativas y reclamaciones públicas para ejercicio RGPD; cumplimiento@multigestioniberia.com es canal legacy. Web pública de privacidad ES poco transparente tras cambios societarios (Cerberus). Confidence likely - no inventar otros emails.", "confidence": "likely", "source_urls": ["https://www.leyes.tv/zolva-platform-s-l-espana/", "https://www.ocu.org/reclamar/lista-reclamaciones-publicas/acoso-y-violaci-C3-B3n-de-protecci-C3-B3/CPTES01110773-26", "https://portal.zolva.es/WebJuridica/"]}, {"id": "solvia", "name": "Solvia (servicing; entorno Haya/Intrum, residual Aktua)", "category": "recobro", "emails": ["SolviaDPO@solvia.es"], "alt_emails": ["protecciondedatos@solvia.es"], "url": "https://www.solvia.es/", "notes": "Canal DPD documentado en política Solvia. Aktua NPL fue absorbida en el entorno Haya/Intrum; para Aktua preferir Intrum dpo.es@intrum.com. Solvia se añade como residual documentado del mismo ecosistema inmobiliario/servicing.", "confidence": "documented", "source_urls": ["https://www.solvia.es/", "/workspace/databy-grok/dpd-deepdive-aktua-arrow-recover.md"]}];
+  var ROSTER_SOLVENCY = [{"id": "experian_badexcug", "name": "Experian Bureau de Crédito (BADEXCUG)", "category": "solvency", "emails": [], "alt_emails": ["badexcug@experian.com"], "url": "https://portaldelconsumidor.experian.es/", "notes": "method: web_form preferente (Portal del Consumidor). Email badexcug@experian.com citado por terceros (p. ej. Gescobro) y en guías; verificar en página Experian (a menudo detrás de bot-wall). No usar dpospain@experian.com para derechos según doctrina secundaria. Categoría solvency, no recobro.", "confidence": "likely", "source_urls": ["https://portaldelconsumidor.experian.es/", "https://www.experian.es/legal/salir-fichero/tratamiento-datos.", "https://www.aepd.es/preguntas-frecuentes/7-solvencia-patrimonial/FAQ-0702-he-sido-incluido-en-un-tratamiento-de-solvencia-patrimonial-y-credito-pero-desconozco-cual", "https://gcbe.es/politica-de-privacidad/"]}, {"id": "equifax_asnef", "name": "ASNEF-Equifax (solvencia)", "category": "solvency", "emails": ["sac@equifax.es"], "alt_emails": [], "url": "https://soluciones.equifax.es/consumidores/", "notes": "UPDATE de equifax_es existente: marcar categoría solvency. Canal documentado sac@equifax.es (formulario Consulta Ágil PDF) y portal eDerechos. Ya en /workspace/DataBye/references/brokers/equifax_es.json.", "confidence": "documented", "source_urls": ["https://assets.equifax.com/assets/spain/consulta_agil_ficheros.pdf", "https://soluciones.equifax.es/consumidores/", "https://www.aepd.es/preguntas-frecuentes/7-solvencia-patrimonial/FAQ-0702-he-sido-incluido-en-un-tratamiento-de-solvencia-patrimonial-y-credito-pero-desconozco-cual"]}, {"id": "rai_cci", "name": "RAI (Registro de Aceptaciones Impagadas)", "category": "solvency", "emails": ["helpdesk@ficherorai.com"], "alt_emails": [], "url": "https://www.ficherorai.com/", "notes": "Fichero de solvencia orientado sobre todo a personas jurídicas / efectos mercantiles. Poco útil para particular consumidor; incluir solo si el wizard solvency lo explica. helpdesk en web oficial.", "confidence": "documented", "source_urls": ["https://www.ficherorai.com/RaiWeb/Informacion"]}, {"id": "confirma_sistemas", "name": "Confirma Sistemas (Fichero Confirma / TransUnion)", "category": "solvency", "emails": ["dpo@confirmasistemas.es"], "alt_emails": ["esdpo@transunion.com"], "url": "https://www.confirmasistemas.es/", "notes": "Fichero de prevención del fraude en contratación (no es ASNEF/BADEXCUG). Política de privacidad documenta DPO dpo@confirmasistemas.es y Esdpo@transunion.com (TransUnion). Opcional en wizard solvency.", "confidence": "documented", "source_urls": ["https://confirmasistemas.es/politica-de-privacidad/", "https://www.cofidis.es/es/informacion-legal/proteccion-datos.html"], "optional": true}];
+
+  var TPL = {
+  "infomediarios": {
+    "subject": "Ejercicio de derechos RGPD/LOPDGDD (acceso / oposición / supresión) - {full_name}",
+    "body": "{broker_name}\nDelegado de Protección de Datos / Canal de ejercicio de derechos\n\n{location}, {date}\n\nEstimados señores:\n\nMe dirijo a ustedes como interesado/a, al amparo del Reglamento (UE) 2016/679 (RGPD) y de la Ley Orgánica 3/2018, de Protección de Datos Personales y garantía de los derechos digitales (LOPDGDD), para ejercer los derechos que se indican a continuación.\n\nDatos de contacto a efectos de respuesta:\n- Nombre y apellidos: {full_name}\n- Correo electrónico: {email}\n\n1. Derecho de acceso (artículo 15 RGPD), con la información del artículo 12 RGPD\nLes ruego confirmen si tratan datos personales que me conciernen y, en caso afirmativo, faciliten de forma clara y completa:\n- Las finalidades del tratamiento;\n- La base jurídica;\n- Las categorías de datos;\n- El origen o las fuentes de los datos;\n- Los destinatarios o categorías de destinatarios;\n- Los plazos de conservación previstos o los criterios para determinarlos.\n\n2. Derecho de oposición a la mercadotecnia directa (artículo 21.2 RGPD)\nMe opongo al tratamiento de mis datos personales para mercadotecnia directa, incluida la elaboración de perfiles en la medida en que esté relacionada con dicha mercadotecnia, así como a cualquier cesión o reutilización comercial incompatible con esta oposición.\n\n3. Derecho de oposición por interés legítimo (artículo 21.1 RGPD)\nCuando el tratamiento se base en el artículo 6.1.f RGPD, me opongo a dicho tratamiento en lo que no resulte estrictamente necesario y, en particular, a la reutilización comercial, el enriquecimiento de bases de datos y la cesión de mis datos con fines de información comercial o marketing.\n\n4. Derecho de supresión (artículo 17 RGPD)\nSolicito la supresión de mis datos personales cuando ya no sean necesarios para las finalidades que justificaron su recogida, cuando el tratamiento sea ilícito o cuando proceda tras una oposición estimada, sin perjuicio de las excepciones legalmente previstas.\n\nEn consecuencia, les requiero que cesen la reutilización comercial, el enriquecimiento y cualquier tratamiento de mis datos con fines de marketing o información comercial que no cuente con base jurídica válida tras esta oposición.\n\nLes recuerdo el plazo de respuesta del artículo 12.3 RGPD (un mes desde la recepción de esta solicitud). Prefiero canal electrónico.\n\nAtentamente,\n{full_name}\n{email}\n"
+  },
+  "recobro": {
+    "subject": "Ejercicio de derechos RGPD (acceso / oposición / supresión) - {full_name}",
+    "body": "{broker_name}\nDelegado de Protección de Datos / Canal de ejercicio de derechos\n\n{location}, {date}\n\nEstimados señores:\n\nMe dirijo a ustedes en calidad de interesado/a, al amparo del Reglamento (UE) 2016/679 (RGPD) y de la Ley Orgánica 3/2018 (LOPDGDD), para ejercer de forma clara y pacífica los derechos que se indican a continuación.\n\nDatos de contacto a efectos de respuesta:\n- Nombre y apellidos: {full_name}\n- Correo electrónico: {email}\n\n1. Derecho de acceso (artículo 15 RGPD), con la información del artículo 12 RGPD\nLes ruego confirmen si tratan datos personales que me conciernen y, en caso afirmativo, faciliten:\n- Las finalidades del tratamiento y la base jurídica (artículo 6 RGPD);\n- Las categorías de datos;\n- El origen de los datos;\n- Los destinatarios o categorías de destinatarios (incluida, en su caso, la identidad del acreedor o cesionario del crédito por cuya cuenta actúan, o de quien les haya encargado la gestión);\n- Los plazos de conservación previstos;\n- Si actúan como responsables o como encargados del tratamiento (artículo 28 RGPD) y, de ser encargados, los datos del responsable.\n\n2. Derecho de oposición (artículo 21 RGPD)\nMe opongo al tratamiento de mis datos personales basado en el interés legítimo cuando no resulte estrictamente necesario para la gestión legítima del cobro de una deuda cierta, vencida y exigible que me afecte, y en particular a cualquier uso para mercadotecnia, cesión comercial de datos o contactos desproporcionados ajenos a esa finalidad.\n\n3. Derecho de supresión (artículo 17 RGPD)\nSolicito la supresión de mis datos personales cuando ya no sean necesarios para las finalidades que justificaron su recogida, cuando el tratamiento sea ilícito, o cuando proceda tras una oposición estimada, todo ello sin perjuicio de las excepciones del artículo 17.3 RGPD (por ejemplo, obligación legal o ejercicio o defensa de reclamaciones).\n\nSi mantienen un tratamiento necesario para reclamar una deuda o para cumplir una obligación legal, les ruego:\n- Lo indiquen de forma concreta;\n- Limiten los datos al mínimo imprescindible (principio de minimización, artículo 5 RGPD);\n- Cesen cualquier finalidad incompatible;\n- Me informen del plazo de conservación y del bloqueo aplicable.\n\n4. Exactitud\nSi los datos o la deuda asociada son inexactos, inexistentes o ya han sido satisfechos o anulados, solicito la rectificación oportuna y el cese de requerimientos indebidos.\n\nLes recuerdo que deben responder sin dilación indebida y, a más tardar, en el plazo de un mes desde la recepción de esta solicitud, conforme al artículo 12.3 RGPD.\n\nEsta comunicación no implica reconocimiento de deuda alguna. Su objeto es exclusivamente el ejercicio de derechos de protección de datos.\n\nQuedo a la espera de su respuesta en la dirección de correo indicada. No es necesario que exijan más datos de los razonables para verificar mi identidad; prefiero canal electrónico.\n\nAtentamente,\n{full_name}\n{email}\n"
+  },
+  "solvency": {
+    "subject": "Ejercicio de derechos RGPD y art. 20 LOPDGDD (consulta / rectificación / exclusión) - {full_name}",
+    "body": "{broker_name}\nDelegado de Protección de Datos / Canal de ejercicio de derechos\n\n{location}, {date}\n\nEstimados señores:\n\nMe dirijo a ustedes como interesado/a, al amparo del Reglamento (UE) 2016/679 (RGPD) y de la Ley Orgánica 3/2018 (LOPDGDD), en particular su artículo 20 relativo a sistemas de información crediticia, para ejercer los derechos que se indican.\n\nDatos de contacto a efectos de respuesta:\n- Nombre y apellidos: {full_name}\n- Correo electrónico: {email}\n\n1. Derecho de acceso (artículo 15 RGPD), con la información del artículo 12 RGPD\nLes ruego confirmen si constan datos que me conciernen en su fichero o sistema de solvencia patrimonial y crédito, y faciliten:\n- Las finalidades del tratamiento;\n- El origen de los datos y la identidad del acreedor informante;\n- Importes, conceptos y fechas relevantes;\n- Los destinatarios o categorías de destinatarios;\n- Los plazos de conservación previstos.\n\n2. Rectificación y/o supresión (artículos 16 y 17 RGPD; artículo 20 LOPDGDD)\nSi la deuda es inexacta, inexistente, ya pagada o anulada, o si no se cumplen los requisitos de inclusión en un sistema de información crediticia (deuda cierta, vencida y exigible; información previa al interesado; requerimiento de pago previo; cuantía aplicable; y plazo máximo de cinco años desde el vencimiento de la obligación), solicito la rectificación o la exclusión inmediata que proceda.\n\nEn particular, si la deuda ha sido satisfecha, les ruego la exclusión inmediata del fichero, conforme a la doctrina y práctica aplicables en materia de sistemas de solvencia patrimonial.\n\n3. Plazo de respuesta\nConforme al artículo 12.3 RGPD, ruego respuesta sin dilación indebida y, a más tardar, en el plazo de un mes desde la recepción de esta solicitud. Prefiero canal electrónico.\n\nEsta comunicación se formula sin perjuicio de las controversias civiles sobre la existencia, cuantía o exigibilidad de cualquier deuda. Su objeto es exclusivamente el ejercicio de derechos de protección de datos.\n\nAtentamente,\n{full_name}\n{email}\n"
+  }
+};
+
+  var step = 0;
+  var STEPS = 7;
+  var selection = {}; // id -> {item, checked}
+  var editState = {}; // id -> {subject, body}
+
+  function $(id) { return document.getElementById(id); }
+
+  function splitList(raw) {
+    return String(raw || "").split(/[,;\n]+/).map(function (x) { return x.trim(); }).filter(Boolean);
+  }
+
+  function escapeHtml(s) {
+    return String(s || "").replace(/[&<>"']/g, function (c) {
+      return ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c];
+    });
+  }
+
+  function todayES() {
+    try {
+      return new Date().toLocaleDateString("es-ES", { year: "numeric", month: "long", day: "numeric" });
+    } catch (e) {
+      return new Date().toISOString().slice(0, 10);
+    }
+  }
+
+  function primaryEmail(item) {
+    var emails = item.emails || [];
+    if (emails.length) return emails[0];
+    return "";
+  }
+
+  function methodOf(item) {
+    if (item.category === "solvency" && (!item.emails || !item.emails.length)) return "web_form";
+    if (item.method) return item.method;
+    return "email";
+  }
+
+  function fillPlaceholders(tpl, item) {
+    var emails = splitList($("emails").value);
+    var loc = ($("city").value || "").trim() || "España";
+    var map = {
+      "{full_name}": ($("full_name").value || "").trim() || "{full_name}",
+      "{email}": emails[0] || "{email}",
+      "{broker_name}": item.name || item.id,
+      "{date}": todayES(),
+      "{location}": loc
+    };
+    var out = String(tpl || "");
+    Object.keys(map).forEach(function (k) {
+      out = out.split(k).join(map[k]);
+    });
+    return out;
+  }
+
+  function catKey(item) {
+    var c = item.category || "";
+    if (c === "infomediary") return "infomediarios";
+    if (c === "infomediarios") return "infomediarios";
+    if (c === "recobro") return "recobro";
+    if (c === "solvency") return "solvency";
+    return c || "infomediarios";
+  }
+
+  function renderSelectList(root, items, opts) {
+    opts = opts || {};
+    root.innerHTML = "";
+    items.forEach(function (item) {
+      var pre = opts.precheck ? opts.precheck(item) : true;
+      var meth = methodOf(item);
+      var el = document.createElement("div");
+      el.className = "target";
+      el.setAttribute("data-id", item.id);
+      var emails = (item.emails || []).join(", ") || "(sin email de envío)";
+      var conf = item.confidence || "";
+      var badge = conf === "documented"
+        ? '<span class="badge doc">documentado</span>'
+        : (conf === "likely" ? '<span class="badge likely">probable</span>' : "");
+      var webBadge = meth === "web_form" ? '<span class="badge web">web_form</span>' : "";
+      var portal = "";
+      if (meth === "web_form" && item.url) {
+        portal = '<a class="portal-link" href="' + escapeHtml(item.url) + '" target="_blank" rel="noopener">Abrir portal</a>';
+      }
+      el.innerHTML =
+        '<div class="target-head">' +
+          '<div><div class="name"></div><div class="meta"></div>' + portal + '</div>' +
+          '<label style="display:flex;align-items:center;gap:0.4rem;font-size:0.9rem;">' +
+            '<input type="checkbox" class="inc" ' + (pre ? "checked" : "") + ' /> Incluir' +
+          '</label>' +
+        '</div>';
+      el.querySelector(".name").innerHTML = escapeHtml(item.name || item.id) + " " + badge + " " + webBadge;
+      el.querySelector(".meta").textContent = item.id + " · " + emails;
+      var inc = el.querySelector(".inc");
+      selection[item.id] = { item: item, checked: !!pre };
+      inc.addEventListener("change", function () {
+        selection[item.id].checked = inc.checked;
+      });
+      root.appendChild(el);
+    });
+  }
+
+  function syncOptHints() {
+    var r = $("opt_recobro").checked;
+    var s = $("opt_solvency").checked;
+    $("empty-extra").style.display = (!r && !s) ? "block" : "none";
+  }
+
+  function buildTargetLists() {
+    // Reset selection for optional cats; keep info
+    selection = {};
+    renderSelectList($("list-info"), ROSTER_INFO, { precheck: function () { return true; } });
+
+    var wantR = $("opt_recobro").checked;
+    var wantS = $("opt_solvency").checked;
+    $("block-recobro").hidden = !wantR;
+    $("block-solvency").hidden = !wantS;
+
+    if (wantR) {
+      var rec = ROSTER_RECOBRO.filter(function (x) {
+        if (x.user_triggered_only) return false;
+        var c = x.confidence;
+        if (c === "unverified") return false;
+        return (x.emails && x.emails.length) || (x.alt_emails && x.alt_emails.length);
+      });
+      // Prefer primary emails; keep those with emails
+      rec = rec.filter(function (x) { return x.emails && x.emails.length; });
+      renderSelectList($("list-recobro"), rec, {
+        precheck: function (item) { return item.confidence === "documented"; }
+      });
+    }
+
+    if (wantS) {
+      var main = ROSTER_SOLVENCY.filter(function (x) { return x.id !== "rai_cci"; });
+      var rai = ROSTER_SOLVENCY.filter(function (x) { return x.id === "rai_cci"; });
+      renderSelectList($("list-solvency"), main, {
+        precheck: function (item) {
+          return item.id === "equifax_asnef" || item.id === "experian_badexcug";
+        }
+      });
+      renderSelectList($("list-rai"), rai, { precheck: function () { return false; } });
+    }
+  }
+
+  function selectedItems() {
+    var out = [];
+    Object.keys(selection).forEach(function (id) {
+      var s = selection[id];
+      if (s && s.checked) out.push(s.item);
+    });
+    return out;
+  }
+
+  function renderEditList() {
+    var root = $("edit-list");
+    root.innerHTML = "";
+    var items = selectedItems();
+    if (!items.length) {
+      root.innerHTML = '<p class="empty-hint">No hay destinatarios seleccionados.</p>';
+      return;
+    }
+    var note = ($("append_note").value || "").trim();
+    items.forEach(function (item) {
+      var cat = catKey(item);
+      var tpl = TPL[cat] || TPL.infomediarios;
+      var meth = methodOf(item);
+      var prev = editState[item.id] || {};
+      var subj = prev.subject != null ? prev.subject : fillPlaceholders(tpl.subject, item);
+      var body = prev.body != null ? prev.body : fillPlaceholders(tpl.body, item);
+      if (note && body.indexOf(note) < 0) {
+        // only auto-append on fresh fill
+        if (prev.body == null) body = body + "\n\n" + note;
+      }
+      var el = document.createElement("div");
+      el.className = "target";
+      el.setAttribute("data-id", item.id);
+      var emails = (item.emails || []).join(", ") || "(portal web)";
+      var webBadge = meth === "web_form" ? '<span class="badge web">web_form</span>' : "";
+      el.innerHTML =
+        '<div class="target-head">' +
+          '<div><div class="name"></div><div class="meta"></div></div>' +
+          '<label style="display:flex;align-items:center;gap:0.4rem;font-size:0.9rem;">' +
+            '<input type="checkbox" class="inc" checked /> Incluir' +
+          '</label>' +
+        '</div>' +
+        '<div class="body-edit">' +
+          (meth === "web_form" && item.url
+            ? '<p class="hint">Este destino es portal. Use el enlace y copie el texto si el formulario lo permite. ' +
+              '<a href="' + escapeHtml(item.url) + '" target="_blank" rel="noopener">Abrir portal</a></p>'
+            : '') +
+          '<label class="field">Asunto</label>' +
+          '<input type="text" class="subj" />' +
+          '<label class="field">Cuerpo</label>' +
+          '<textarea class="body" rows="8"></textarea>' +
+          '<p class="hint"></p>' +
+        '</div>';
+      el.querySelector(".name").innerHTML = escapeHtml(item.name) + " " + webBadge +
+        ' <span class="opt-tag">' + escapeHtml(cat) + '</span>';
+      el.querySelector(".meta").textContent = item.id + " · " + emails;
+      el.querySelector(".subj").value = subj;
+      el.querySelector(".body").value = body;
+      el.querySelector(".hint").textContent = meth === "web_form"
+        ? ("Método: web_form · " + (item.url || ""))
+        : ("Destinatario: " + emails);
+      var inc = el.querySelector(".inc");
+      inc.addEventListener("change", function () {
+        el.classList.toggle("collapsed", !inc.checked);
+        if (selection[item.id]) selection[item.id].checked = inc.checked;
+      });
+      el.querySelector(".subj").addEventListener("input", function () {
+        editState[item.id] = editState[item.id] || {};
+        editState[item.id].subject = el.querySelector(".subj").value;
+      });
+      el.querySelector(".body").addEventListener("input", function () {
+        editState[item.id] = editState[item.id] || {};
+        editState[item.id].body = el.querySelector(".body").value;
+      });
+      editState[item.id] = { subject: subj, body: body };
+      root.appendChild(el);
+    });
+  }
+
+  function collectTargets() {
+    var targets = [];
+    Array.prototype.forEach.call(document.querySelectorAll("#edit-list .target"), function (el) {
+      var id = el.getAttribute("data-id");
+      var inc = el.querySelector(".inc");
+      if (!inc || !inc.checked) return;
+      var item = selection[id] && selection[id].item;
+      if (!item) return;
+      var meth = methodOf(item);
+      var email = primaryEmail(item) || null;
+      targets.push({
+        id: item.id,
+        name: item.name,
+        category: catKey(item),
+        email: email,
+        subject: (el.querySelector(".subj").value || "").trim(),
+        body: (el.querySelector(".body").value || "").trim(),
+        method: meth,
+        url: item.url || null
+      });
+    });
+    return targets;
+  }
+
+  function buildExport() {
+    var dniVal = ($("dni") && $("dni").value) || "";
+    var dniAttach = !!( $("dni_attach") && $("dni_attach").checked );
+    var emails = splitList($("emails").value).map(function (e) { return e.toLowerCase(); });
+
+    var targets = collectTargets();
+    var cats = {
+      infomediarios: true,
+      recobro: !!$("opt_recobro").checked,
+      solvency: !!$("opt_solvency").checked
+    };
+    return {
+      schema: "databy-grok.wizard-export",
+      version: "1.1.0",
+      generated_at: new Date().toISOString(),
+      consent: !!$("consent").checked,
+      subject: {
+        full_name: ($("full_name").value || "").trim(),
+        email: emails[0] || null,
+        emails: emails,
+        aliases: splitList($("aliases").value),
+        city: ($("city").value || "").trim() || null,
+        country: "ES",
+        id_document: {
+          provided: !!(dniVal && String(dniVal).trim()),
+          attach_to_email: !!(dniAttach),
+          value_stored: false,
+          note: (dniVal && String(dniVal).trim())
+            ? (dniAttach
+                ? "opcional: autorizado a adjuntar si el usuario confirma al enviar (pueden pedir original tras el escrito)"
+                : "anotado; no adjuntar ni escribir en el cuerpo por defecto")
+            : ""
+        }
+      },
+      categories: cats,
+      robinson: { action: robinsonAction() },
+      targets: targets,
+      legal_notice_ack: !!$("legal_ack").checked,
+      mail: {
+        append_note: ($("append_note").value || "").trim() || null
+      }
+    };
+  }
+
+  function countByCat(targets) {
+    var i = 0, r = 0, s = 0;
+    targets.forEach(function (t) {
+      if (t.category === "infomediarios") i++;
+      else if (t.category === "recobro") r++;
+      else if (t.category === "solvency") s++;
+    });
+    return { i: i, r: r, s: s, n: targets.length };
+  }
+
+  function renderSummary() {
+    var data = buildExport();
+    var c = countByCat(data.targets);
+    var box = $("summary");
+    box.innerHTML =
+      "<dl>" +
+      "<dt>Consentimiento</dt><dd>" + (data.consent ? "Sí" : "No") + "</dd>" +
+      "<dt>Nombre</dt><dd>" + escapeHtml(data.subject.full_name) + "</dd>" +
+      "<dt>Emails</dt><dd>" + escapeHtml((data.subject.emails || []).join(", ")) + "</dd>" +
+      "<dt>Ciudad</dt><dd>" + escapeHtml(data.subject.city || "(no indicada)") + "</dd>" +
+      "<dt>DNI/NIE</dt><dd>" + (data.subject.id_document && data.subject.id_document.provided
+        ? (data.subject.id_document.attach_to_email
+          ? "Anotado; adjunto al mail solo si confirma al enviar (pueden pedir original)"
+          : "Anotado; no se adjunta ni se escribe en el cuerpo")
+        : "No aportado") + "</dd>" +
+      "<dt>Categorías</dt><dd>infomediarios: sí · Recobro: " +
+        (data.categories.recobro ? "sí" : "no") + " · Solvencia: " +
+        (data.categories.solvency ? "sí" : "no") + "</dd>" +
+      "<dt>Lista Robinson</dt><dd>" + escapeHtml(robinsonLabel(data.robinson && data.robinson.action)) + "</dd>" +
+      "<dt>Borradores</dt><dd>Generar " + c.n + " borradores (" + c.i +
+        " infomediarios, " + c.r + " recobro, " + c.s + " solvencia)</dd>" +
+      "<dt>Destinatarios</dt><dd>" + escapeHtml(data.targets.map(function (t) {
+        return t.name + (t.method === "web_form" ? " [web]" : "");
+      }).join(", ") || "(ninguno)") + "</dd>" +
+      "</dl>";
+    fillHandoff();
+  }
+
+  function robinsonAction() {
+    var el = document.querySelector('input[name="robinson_action"]:checked');
+    return (el && el.value) ? el.value : "skip";
+  }
+
+  function robinsonLabel(action) {
+    if (action === "guide") return "Guía en listarobinson.es";
+    if (action === "done") return "Ya inscrito / lo hará usted";
+    return "Omitida ahora";
+  }
+
+  function handoffText(data) {
+    var c = data.categories || {};
+    var emails = (data.targets || []).filter(function (t) { return t.method === "email"; }).length;
+    var forms = (data.targets || []).filter(function (t) { return t.method === "web_form"; }).length;
+    var name = (data.subject && data.subject.full_name) ? data.subject.full_name : "";
+    var contact = ((data.subject && data.subject.emails) || []).join(", ");
+    var rob = (data.robinson && data.robinson.action) || "skip";
+    var robLine = "Lista Robinson: omitida ahora.";
+    if (rob === "guide") {
+      robLine = "Lista Robinson: guiar inscripción en https://www.listarobinson.es/register-consumer (formulario web; no es email de borrado).";
+    } else if (rob === "done") {
+      robLine = "Lista Robinson: el interesado ya está inscrito o lo hará por su cuenta.";
+    }
+    return [
+      "DataBye: el asistente está completo. Conecta Gmail u Outlook (OAuth), envía el lote a los destinatarios del roster y activa vigilancia de respuestas si quiero.",
+      "Interesado: " + name,
+      "Emails de contacto: " + contact,
+      "Categorías: infomediarios sí; recobro " + (c.recobro ? "sí" : "no") + "; solvencia " + (c.solvency ? "sí" : "no") + ".",
+      robLine,
+      "Destinos: " + emails + " por email, " + forms + " por formulario web.",
+      "DNI/NIE: solo adjuntar si el usuario lo marco en el asistente y lo confirma al enviar (pueden pedir original tras el escrito). Usar asuntos y cuerpos del resumen.",
+      "Consentimiento y aviso legal: aceptados."
+    ].join("\n");
+  }
+
+  function fillHandoff() {
+    var ta = $("handoff");
+    if (!ta) return;
+    ta.value = handoffText(buildExport());
+  }
+
+  function copyHandoff() {
+    if (!DEMO && !$("legal_ack").checked) {
+      toast("Marque el aviso legal antes de continuar.", "warn");
+      return;
+    }
+    if (DEMO && $("legal_ack") && !$("legal_ack").checked) $("legal_ack").checked = true;
+    fillHandoff();
+    var ta = $("handoff");
+    var st = $("handoff-status");
+    var text = ta.value;
+    function ok() {
+      if (st) st.textContent = "Instrucción copiada. Péguela en el chat de DataBye / Grok Bot.";
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(ok).catch(function () {
+        ta.focus();
+        ta.select();
+        try { document.execCommand("copy"); ok(); }
+        catch (e) { if (st) st.textContent = "Seleccione el texto y cópielo (Cmd/Ctrl+C)."; }
+      });
+    } else {
+      ta.focus();
+      ta.select();
+      try { document.execCommand("copy"); ok(); }
+      catch (e) { if (st) st.textContent = "Seleccione el texto y cópielo (Cmd/Ctrl+C)."; }
+    }
+  }
+
+  function handoffContinue() {
+    if (!DEMO && !$("legal_ack").checked) {
+      toast("Marque el aviso legal antes de continuar.", "warn");
+      return;
+    }
+    if (DEMO && $("legal_ack") && !$("legal_ack").checked) $("legal_ack").checked = true;
+    fillHandoff();
+    copyHandoff();
+    var st = $("handoff-status");
+    if (st) {
+      var rob = robinsonAction();
+      var extra = "";
+      if (rob === "guide") extra = " Después: guía Lista Robinson en listarobinson.es (captcha y verificación los completa usted).";
+      else if (rob === "done") extra = " Lista Robinson: ya anotada como hecha / por su cuenta.";
+      st.textContent = "Siguiente paso: en el chat diga «conecta Gmail» o «conecta Outlook», autorice OAuth y pida «envía el lote». Grok Bot enviará sin adjuntar DNI y podrá vigilar respuestas." + extra;
+    }
+  }
+
+
+
+  function showStep(n) {
+    step = Math.max(0, Math.min(STEPS - 1, n));
+    document.querySelectorAll(".step").forEach(function (s) {
+      var i = Number(s.getAttribute("data-step"));
+      if (i === step) s.classList.add("active");
+      else s.classList.remove("active");
+    });
+    document.querySelectorAll(".progress span").forEach(function (sp) {
+      var i = Number(sp.getAttribute("data-i"));
+      sp.classList.toggle("on", i === step);
+      sp.classList.toggle("done", i < step);
+    });
+    if (step === 4) buildTargetLists();
+    if (step === 5) renderEditList();
+    if (step === 6) renderSummary();
+    try { window.scrollTo({ top: 0, behavior: "smooth" }); } catch (e) { window.scrollTo(0, 0); }
+  }
+
+
+  var DEMO = true; // landing simulation: no hard blockers
+
+  function toast(msg, kind) {
+    var host = document.getElementById("toast-host");
+    if (!host) { console.warn(msg); return; }
+    var el = document.createElement("div");
+    el.className = "toast " + (kind || "info");
+    el.textContent = msg;
+    host.appendChild(el);
+    setTimeout(function () { try { el.remove(); } catch (e) {} }, 4200);
+  }
+
+  function prefillDemo() {
+    if (!DEMO) return;
+    function set(id, val) {
+      var el = $(id);
+      if (el && !(el.value || "").trim()) el.value = val;
+    }
+    set("full_name", "María Ejemplo");
+    set("emails", "maria@example.com, maria.alt@example.com");
+    set("aliases", "M. Ejemplo");
+    set("city", "Madrid");
+    if ($("consent") && !$("consent").checked) $("consent").checked = true;
+    if ($("legal_ack") && !$("legal_ack").checked) $("legal_ack").checked = true;
+  }
+
+  function validateStep(n) {
+    if (DEMO) {
+      if (n === 2) {
+        var wasEmpty = !(($("full_name") && $("full_name").value.trim()) && ($("emails") && $("emails").value.trim()));
+        prefillDemo();
+        if (wasEmpty) toast("Simulación: datos de ejemplo aplicados (María Ejemplo).", "info");
+      }
+      if (n === 4) {
+        var keys = Object.keys(selection);
+        if (!keys.some(function (id) { return selection[id] && selection[id].checked; })) {
+          keys.slice(0, 3).forEach(function (id) { if (selection[id]) selection[id].checked = true; });
+          toast("Simulación: 3 destinatarios de ejemplo seleccionados.", "info");
+        }
+      }
+      return true;
+    }
+    if (n === 2) {
+      var name = ($("full_name").value || "").trim();
+      var emails = splitList($("emails").value);
+      if (!name) { toast("Indique el nombre completo.", "warn"); return false; }
+      if (!emails.length) { toast("Indique al menos un email.", "warn"); return false; }
+      if (!$("consent").checked) { toast("Necesitamos su consentimiento para continuar.", "warn"); return false; }
+      return true;
+    }
+    if (n === 4) {
+      var any = Object.keys(selection).some(function (id) { return selection[id].checked; });
+      if (!any) { toast("Seleccione al menos un destinatario.", "warn"); return false; }
+      return true;
+    }
+    return true;
+  }
+
+  function onNext() {
+    if (!validateStep(step)) return;
+    showStep(step + 1);
+  }
+  function onPrev() { showStep(step - 1); }
+
+  function boot() {
+    document.querySelectorAll("[data-next]").forEach(function (btn) {
+      btn.addEventListener("click", function (e) { e.preventDefault(); onNext(); });
+    });
+    document.querySelectorAll("[data-prev]").forEach(function (btn) {
+      btn.addEventListener("click", function (e) { e.preventDefault(); onPrev(); });
+    });
+    var bc = $("btn-copy");
+    if (bc) bc.addEventListener("click", function (e) { e.preventDefault(); copyHandoff(); });
+    var bh = $("btn-handoff");
+    if (bh) bh.addEventListener("click", function (e) { e.preventDefault(); handoffContinue(); });
+    var la = $("legal_ack");
+    if (la) la.addEventListener("change", fillHandoff);
+    document.querySelectorAll('input[name="robinson_action"]').forEach(function (r) {
+      r.addEventListener("change", fillHandoff);
+    });
+    var bp = $("btn-print");
+    if (bp) bp.addEventListener("click", function (e) { e.preventDefault(); window.print(); });
+    var or = $("opt_recobro");
+    if (or) or.addEventListener("change", function () { /* lists rebuild on step enter */ });
+    var os = $("opt_solvency");
+    if (os) os.addEventListener("change", function () {});
+    if (DEMO) prefillDemo();
+    showStep(0);
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", boot);
+  } else {
+    boot();
+  }
+})();
+</script>
+</body>
+</html>
