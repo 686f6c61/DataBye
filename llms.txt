@@ -1,7 +1,7 @@
 Idioma: responde siempre en español al usuario.
 
 # DataBye Grok — llms.txt (playbook para agentes)
-# Version: 2.0.2 | License: MIT
+# Version: 2.0.3 | License: MIT
 # Repo: https://github.com/686f6c61/DataBye
 # Skill body: SKILL.md
 

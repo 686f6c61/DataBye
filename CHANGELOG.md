@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.0.3 — 2026-09-22
+
+### Cambiado
+- Tras el lote: se **explica** la vigilancia en prosa y luego se pregunta con widget (opt-in explícito).
+
 ## 2.0.2 — 2026-09-22
 
 ### Cambiado

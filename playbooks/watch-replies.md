@@ -1,6 +1,9 @@
 # Vigilancia de respuestas (solo correos enviados)
 
 ## Cuándo activar
+## Pedir consentimiento (obligatorio)
+Tras el lote, **primero explica** en un mensaje corto (opcional; solo esos envíos; aviso si contestan o piden DNI/datos; laborables 9:32; silencio si no hay novedad; hace falta correo conectado). **Después** el widget «¿Quieres activar esa vigilancia?». Nunca activar sin un Sí explícito.
+
 Solo si la persona elige **Sí** en el widget tras el lote. Por defecto la routine queda en **pausa**. No digas que «sigue activa» sin consentimiento.
 
 ## Lista de seguimiento
