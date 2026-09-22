@@ -1,5 +1,12 @@
 # Changelog
 
+## 2.0.2 — 2026-09-22
+
+### Cambiado
+- Vigilancia de respuestas: solo los correos del lote enviado (lista de seguimiento).
+- Prioridad de aviso cuando el destinatario **pide algo** (DNI, documentos, más datos…).
+- Widget post-envío y playbook `watch-replies.md` alineados con ese alcance.
+
 ## 2.0.1 — 2026-09-18
 
 ### Cambiado
